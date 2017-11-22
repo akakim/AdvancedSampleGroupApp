@@ -1,0 +1,81 @@
+package group.sample.advanced.rrk.com.advancedsamplegroupapplication.inquiry;
+
+import android.content.Context;
+import android.support.annotation.VisibleForTesting;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+
+/**
+ * @author KIM
+ * @version 0.0.1
+ * @date 2017-11-16
+ * @since 0.0.1
+ */
+@SuppressWarnings("WeakerAccess")
+@VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE) // 이것은 무엇일까 ?
+public class InquiryBase {
+
+    private HashMap<String,FieldDelegate> idProxyCache;
+    private HashMap<String, Class<?>> builderClassCache;
+    private HashMap<String, Constructor<?>> constructorCache;
+    private HashMap<String, Method> buildMethodCache;
+    private HashMap<String, Method> withIdMethodCache;
+
+    InquiryBase(Context context) throws IllegalAccessException {
+        if( context == null){
+            throw new IllegalAccessException("Context can't be null.");
+        }
+
+//        this.idProxyCache = new HashMap<>(0);
+        this.builderClassCache = new HashMap<>(0);
+        this.constructorCache = new HashMap<>(0);
+        this.buildMethodCache = new HashMap<>(0);
+        this.withIdMethodCache = new HashMap<>(0);
+    }
+
+    public HashMap<String, FieldDelegate> getIdProxyCache() {
+        return idProxyCache;
+    }
+
+    public HashMap<String, Class<?>> getBuilderClassCache() {
+        return builderClassCache;
+    }
+
+    public HashMap<String, Constructor<?>> getConstructorCache() {
+        return constructorCache;
+    }
+
+    public HashMap<String, Method> getBuildMethodCache() {
+        return buildMethodCache;
+    }
+
+    public HashMap<String, Method> getWithIdMethodCache() {
+        return withIdMethodCache;
+    }
+
+    public void destroyInstance() {
+        if (idProxyCache != null) {
+            idProxyCache.clear();
+            idProxyCache = null;
+        }
+        if (builderClassCache != null) {
+            builderClassCache.clear();
+            builderClassCache = null;
+        }
+        if (constructorCache != null) {
+            constructorCache.clear();
+            constructorCache = null;
+        }
+        if (buildMethodCache != null) {
+            buildMethodCache.clear();
+            buildMethodCache = null;
+        }
+        if (withIdMethodCache != null) {
+            withIdMethodCache.clear();
+            withIdMethodCache = null;
+        }
+    }
+
+}
