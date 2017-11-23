@@ -1,5 +1,7 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication.data;
 
+import android.support.annotation.NonNull;
+
 /**
  * @author KIM
  * @version 0.0.1
@@ -8,8 +10,16 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.data;
  */
 
 public class SampleItem {
+    
     Class<?> clazz;
     String description;
+
+
+
+    public SampleItem( @NonNull Class<?> clazz,@NonNull String description) {
+        this.clazz = clazz;
+        this.description = description;
+    }
 
     public Class<?> getClazz() {
         return clazz;

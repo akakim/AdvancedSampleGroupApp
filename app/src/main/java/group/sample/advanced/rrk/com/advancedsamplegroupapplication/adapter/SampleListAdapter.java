@@ -4,10 +4,14 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,22 +27,39 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleI
 public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.SampleViewHolder> {
 
     Context context;
-    SampleItem [] sampleItems;
+
+    ItemClickListener itemClickListener;
+    List <SampleItem> sampleItems = new ArrayList<>();
 
     public SampleListAdapter(Context context) {
-        this(context,null);
+        this.context = context;
+        this.sampleItems = null;
     }
 
-    public SampleListAdapter(Context context,SampleItem[] sampleItems){
+
+    public SampleListAdapter(Context context,SampleItem[] sampleItems,ItemClickListener itemClickListener){
         super();
         this.context = context;
-        this.sampleItems = sampleItems;
+//        this.sampleItems = sampleItems;
+        this.itemClickListener= itemClickListener;
+
+        for( SampleItem i : sampleItems ){
+            this.sampleItems.add(i);
+        }
+    }
+
+    public SampleListAdapter(Context context, List<SampleItem> sampleItems,ItemClickListener itemClickListener){
+
+        super();
+        this.context = context;
+        this.sampleItems.addAll( sampleItems );
+        this.itemClickListener= itemClickListener;
     }
 
     @Override
     public SampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from( context ).inflate( R.layout.sample_list_item, parent );
+        View view = LayoutInflater.from( context ).inflate( R.layout.sample_list_item, null );
 
         return new SampleViewHolder(view);
     }
@@ -47,35 +68,53 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     @Override
     public void onBindViewHolder(SampleViewHolder holder, int position) {
 
-        holder.tvActivityName.setText ( sampleItems[position].getClazz().getName() ) ;
-        holder.tvContent.setText( sampleItems[position].getDescription() );
+        holder.itemView.setTag(position);
+
+        if( sampleItems.get(position).getClazz() == null){
+            Log.e("TAG","getClaxx is null ");
+        }else if(holder.tvActivityName == null ){
+
+            Log.e("TAG","tvActivity Name is null");
+        }
+        else{
+            holder.tvActivityName.setText(sampleItems.get(position).getClazz().getSimpleName());
+        }
+        holder.tvContent.setText( sampleItems.get(position).getDescription() );
     }
 
     @Override
-    public int getItemCount() { return (sampleItems == null ) ? 0 : sampleItems.length; }
-
-
-
-    public void setSampleItems(SampleItem[] sampleItems) {
-        this.sampleItems = sampleItems;
-    }
+    public int getItemCount() { return (sampleItems == null ) ? 0 : sampleItems.size(); }
 
     public class SampleViewHolder extends RecyclerView.ViewHolder {
 
 
       @Nullable
       @BindView(R.id.tvActivityName)
-      TextView tvActivityName;
+      public TextView tvActivityName;
 
       @Nullable
       @BindView(R.id.tvContent)
-      TextView tvContent;
+      public TextView tvContent;
 
         public SampleViewHolder(View itemView) {
             super(itemView);
 
-            ButterKnife.bind(itemView);
+            ButterKnife.bind(this,itemView);
+
+            itemView.setOnClickListener(
+                    (View) -> {
+
+                        if(itemClickListener != null){
+                            itemClickListener.ItemClicked(
+                                    (int)View.getTag()
+                            );
+                        }
+                    }
+            );
         }
     }
 
+    public interface ItemClickListener{
+        public void ItemClicked(int position);
+    }
 }

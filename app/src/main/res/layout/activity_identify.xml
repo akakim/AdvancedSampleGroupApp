@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2">
+
+    <TextView
+        style="@style/GridBatchTitleStyle"
+        android:text=" Identify ApplicationID "
+        android:gravity="center"
+        android:textSize="14sp"/>
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:text="get Packaage Name from Context" />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:id="@+id/tvPackageName"
+        />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:text="get ApplicationID from BuildConfig " />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:id="@+id/tvApplicationID"
+        />
+
+
+    <TextView
+        style="@style/GridBatchTitleStyle"
+        android:text=" Identify Device "
+        android:gravity="center"
+        android:textSize="14sp"/>
+    <TextView
+        style="@style/GridBatchStyle"
+        android:text="UUID Value " />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:id="@+id/tvUUIDValue"
+        />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:text="Telephony Value" />
+    <TextView
+        style="@style/GridBatchStyle"
+        android:id="@+id/tvTelePhonyValue"
+        />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:text="SerialNumber " />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:id="@+id/tvSerialNumber"
+        />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:text="Android_ID " />
+
+    <TextView
+        style="@style/GridBatchStyle"
+        android:id="@+id/tvAndroidIDValue"
+        />
+
+
+
+
+</GridLayout>

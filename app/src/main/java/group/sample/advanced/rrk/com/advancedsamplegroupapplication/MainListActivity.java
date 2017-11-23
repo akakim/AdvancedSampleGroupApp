@@ -1,18 +1,22 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter.SampleListAdapter;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.IdentifyActivity;
 
-public class MainListActivity extends BaseActivity{
+public class MainListActivity extends BaseActivity implements SampleListAdapter.ItemClickListener{
 
 
     @BindView(R.id.rvSampleList)
@@ -20,7 +24,7 @@ public class MainListActivity extends BaseActivity{
 
     SampleListAdapter sampleListAdapter;
 
-    ArrayList<SampleItem> sampleItems = new ArrayList<>();
+    List<SampleItem> sampleItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +34,20 @@ public class MainListActivity extends BaseActivity{
 
         ButterKnife.bind(this);
 
-        sampleListAdapter = new SampleListAdapter(this, (SampleItem[]) sampleItems.toArray() );
+        sampleItems.add( new SampleItem(IdentifyActivity.class,"Application 고유 ID 와 device의 고유 ID"));
 
+
+        sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
+
+
+        rvSampleList.setAdapter( sampleListAdapter );
+
+        rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
+    }
+
+    @Override
+    public void ItemClicked(int position) {
+        Intent i = new Intent(this, sampleItems.get(position).getClazz() );
+        startActivity( i ) ;
     }
 }
