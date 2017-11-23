@@ -43,7 +43,8 @@
         </activity>
         <activity android:name=".samples.IdentifyActivity" />
         <activity android:name=".samples.QueryContentsProviderActivity" />
-        <activity android:name=".samples.QueryContentsResolverActivity"></activity>
+        <activity android:name=".samples.QueryContentsResolverActivity" />
+        <activity android:name=".samples.OpenViewPagerActivity"></activity>
     </application>
 
 </manifest>
