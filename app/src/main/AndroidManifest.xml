@@ -44,7 +44,11 @@
         <activity android:name=".samples.IdentifyActivity" />
         <activity android:name=".samples.QueryContentsProviderActivity" />
         <activity android:name=".samples.QueryContentsResolverActivity" />
-        <activity android:name=".samples.OpenViewPagerActivity"></activity>
+        <activity android:name=".samples.OpenViewPagerActivity" />
+        <activity android:name=".samples.widget.ConstraintLayoutListActivity" />
+        <activity android:name=".samples.database.GetAllOfItems" />
+        <activity android:name=".samples.database.GetAllOfMusicItemsActivity" />
+        <activity android:name=".samples.ButterKnifeExampleActivity"></activity>
     </application>
 
 </manifest>

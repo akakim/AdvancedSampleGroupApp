@@ -58,9 +58,10 @@ ViewPager.OnScrollChangeListener{
 
             fragments.add( fragment );
 
-//            tabLayout.addTab(tabLayout.newTab().setText("tab "+ k));
 
         }
+
+
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity( TabLayout.GRAVITY_FILL);
 
@@ -69,13 +70,6 @@ ViewPager.OnScrollChangeListener{
 
         viewPager.setAdapter( simplePagerAdapter );
 
-
-
-//        tabLayout.addTab(tabLayout.newTab().setText("tag2"));
-//        tabLayout.addTab(tabLayout.newTab().setText("tag1"));
-//        tabLayout.addTab(tabLayout.newTab().setText("tag1"));
-//        TabLayout.Tab tab = new TabLayout.Tab();
-//        tabLayout.add(tabLayout.setTab);
     }
 
     @Override
