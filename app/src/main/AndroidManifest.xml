@@ -48,7 +48,8 @@
         <activity android:name=".samples.widget.ConstraintLayoutListActivity" />
         <activity android:name=".samples.database.GetAllOfItems" />
         <activity android:name=".samples.database.GetAllOfMusicItemsActivity" />
-        <activity android:name=".samples.ButterKnifeExampleActivity"></activity>
+        <activity android:name=".samples.ButterKnifeExampleActivity" />
+        <activity android:name=".samples.widget.TextInputLayoutCustomActivity"></activity>
     </application>
 
 </manifest>

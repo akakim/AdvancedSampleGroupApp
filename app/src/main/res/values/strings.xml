@@ -59,4 +59,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="errorID">아이디를 입력</string>
+    <string name="errorPassword">패스워드를 입력하세요</string>
+    <string name="errorAmount">수량을 입력하세요</string>
+
+
+    <string name="hinID">아이디</string>
+    <string name="hintPassword">패스워드</string>
+    <string name="hintAmount">수량</string>
 </resources>
