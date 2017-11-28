@@ -2,13 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="group.sample.advanced.rrk.com.advancedsamplegroupapplication.ContentsFragment">
+    tools:context="group.sample.advanced.rrk.com.advancedsamplegroupapplication.ListFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rvContents">
-
-    </android.support.v7.widget.RecyclerView>
+        android:text="@string/hello_blank_fragment"
+        android:gravity="center"
+        android:id="@+id/tvTitle"/>
 
 </FrameLayout>
