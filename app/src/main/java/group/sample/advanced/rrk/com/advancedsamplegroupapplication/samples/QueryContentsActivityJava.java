@@ -26,7 +26,7 @@ public class QueryContentsActivityJava extends BaseActivity {
 
     ViewPagerAdapter viewPagerAdapter;
 
-    List<> fragments
+    List<Fragment> fragments;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +34,8 @@ public class QueryContentsActivityJava extends BaseActivity {
         ButterKnife.bind( this );
 
 
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(),)
-        vpDeviceContents.setAdapter( viewPagerAdapter );
+//        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager())
+//        vpDeviceContents.setAdapter( viewPagerAdapter );
     }
 
 

@@ -1,1 +1,2 @@
+include 'MPChartLib'
 include ':app'
