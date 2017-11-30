@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter.SampleListAdapter;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.*;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.MpAndroidChartListJavaActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widget.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.database.*;
 
@@ -40,6 +41,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleItems.add( new SampleItem(OpenViewPagerActivity.class,"뷰페이저 테스트를위한 페이지"));
         sampleItems.add( new SampleItem(GetAllOfMusicItemsActivity.class,"음악 아이템을 모아놓음"));
         sampleItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
+        sampleItems.add( new SampleItem(MpAndroidChartListJavaActivity.class,"MPAndroidChart 예제들"));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );

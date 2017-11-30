@@ -18,10 +18,10 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.char
  * Created by RyoRyeong Kim on 2017-11-30.
  */
 
-public class MarkerView extends RelativeLayout implements IMarker {
+public class MarkerView extends RelativeLayout implements com.github.mikephil.charting.components.IMarker {
 
-    private MPPointF mOffset = new MPPointF();
-    private MPPointF mOffset2 = new MPPointF();
+    private  com.github.mikephil.charting.utils.MPPointF mOffset = new  com.github.mikephil.charting.utils.MPPointF();
+    private  com.github.mikephil.charting.utils.MPPointF mOffset2 = new  com.github.mikephil.charting.utils.MPPointF();
     private WeakReference<Chart> mWeakChart;
 
     public MarkerView(Context context,int layoutResource) {
@@ -46,11 +46,11 @@ public class MarkerView extends RelativeLayout implements IMarker {
         inflated.layout(0, 0, inflated.getMeasuredWidth(), inflated.getMeasuredHeight());
     }
 
-    public void setOffset(MPPointF offset) {
+    public void setOffset( com.github.mikephil.charting.utils.MPPointF offset) {
         mOffset = offset;
 
         if (mOffset == null) {
-            mOffset = new MPPointF();
+            mOffset = new  com.github.mikephil.charting.utils.MPPointF();
         }
     }
 
@@ -75,13 +75,13 @@ public class MarkerView extends RelativeLayout implements IMarker {
      * @return
      */
     @Override
-    public MPPointF getOffset() {
+    public com.github.mikephil.charting.utils.MPPointF getOffset() {
         return mOffset;
     }
 
     @Override
-    public MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
-        MPPointF offset = getOffset();
+    public com.github.mikephil.charting.utils.MPPointF getOffsetForDrawingAtPoint(float posX, float posY) {
+        com.github.mikephil.charting.utils.MPPointF offset = getOffset();
         mOffset2.x = offset.x;
         mOffset2.y = offset.y;
 
@@ -115,7 +115,7 @@ public class MarkerView extends RelativeLayout implements IMarker {
     @Override
     public void draw(Canvas canvas, float posX, float posY) {
 
-        MPPointF offset = getOffsetForDrawingAtPoint(posX, posY);
+        com.github.mikephil.charting.utils.MPPointF offset = getOffsetForDrawingAtPoint(posX, posY);
 
         int saveId = canvas.save();
         // translate to the correct position and draw

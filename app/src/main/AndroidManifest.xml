@@ -52,7 +52,8 @@
         <activity android:name=".samples.widget.TextInputLayoutCustomActivity" />
         <activity android:name=".samples.charsample.MpAndroidChartListActivity" />
         <activity android:name=".samples.charsample.MpAndroidChartListJavaActivity" />
-        <activity android:name=".samples.charsample.LinearChartOneActivity"></activity>
+        <activity android:name=".samples.charsample.LinearChartOneActivity" />
+        <activity android:name=".samples.charsample.BarChartActivity"></activity>
     </application>
 
 </manifest>

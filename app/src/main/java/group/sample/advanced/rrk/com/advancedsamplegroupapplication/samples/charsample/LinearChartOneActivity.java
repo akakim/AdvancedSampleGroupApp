@@ -8,18 +8,23 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.chartlib.component.MarkerView;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.chartlib.custom.CustomMakerView;
 
-public class LinearChartOneActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener,
+public class LinearChartOneActivity extends DemoBase implements SeekBar.OnSeekBarChangeListener,
         OnChartGestureListener, OnChartValueSelectedListener {
 
 
@@ -44,6 +49,7 @@ public class LinearChartOneActivity extends AppCompatActivity implements SeekBar
         setContentView(R.layout.activity_linear_chart_one);
 
         ButterKnife.bind( this );
+
 
 
         mSeekBarX.setProgress(45);
@@ -80,8 +86,32 @@ public class LinearChartOneActivity extends AppCompatActivity implements SeekBar
 //        markerView.setChartView(chart);
 //        chart.setMarker(markerView); -- > Customize?
 
+
+        CustomMakerView customMakerView = new CustomMakerView( this ,R.layout.layout_marker);
+        customMakerView.setChartView( chart );
+        chart . setMarker( customMakerView );// 서로 인터페이스로 엮는거같다.
+
+        // x - axis limit line
+        LimitLine  llXAxis = new LimitLine( 10f, "index 10 ");
+        llXAxis.setLineWidth( 4f );
+        llXAxis.setLineWidth(4f);
+        llXAxis.enableDashedLine(10f, 10f, 0f);
+        llXAxis.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);
+        llXAxis.setTextSize(10f);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.enableGridDashedLine(10f, 10f, 0f);
+
     }
 
+
+    private void setData(int count,float range){
+        ArrayList<Entry> values = new ArrayList<>();
+
+        for (int i = 0;i < count; i++){
+//            float val ( )
+        }
+    }
     /**
      * implement SeekBar
      * @param seekBar

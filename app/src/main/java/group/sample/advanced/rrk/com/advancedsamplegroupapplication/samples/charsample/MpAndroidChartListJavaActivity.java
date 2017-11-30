@@ -37,6 +37,7 @@ public class MpAndroidChartListJavaActivity extends AppCompatActivity implements
 //        sampleItems.add( new SampleItem(GetAllOfMusicItemsActivity.class,"음악 아이템을 모아놓음"));
 //        sampleItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
         sampleItems.add( new SampleItem(LinearChartOneActivity.class,"TextInput Custom 예제 "));
+        sampleItems.add( new SampleItem(BarChartActivity.class,"BarChart 예제 .. "));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
