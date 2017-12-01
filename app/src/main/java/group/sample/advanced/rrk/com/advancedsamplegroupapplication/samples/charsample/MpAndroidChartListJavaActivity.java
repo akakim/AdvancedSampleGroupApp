@@ -38,6 +38,7 @@ public class MpAndroidChartListJavaActivity extends AppCompatActivity implements
 //        sampleItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
         sampleItems.add( new SampleItem(LinearChartOneActivity.class,"TextInput Custom 예제 "));
         sampleItems.add( new SampleItem(BarChartActivity.class,"BarChart 예제 .. "));
+        sampleItems.add( new SampleItem(SampleDayOfKW.class,"어떤 해가 주어지면 일정한 month가 나오겟찌  "));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );

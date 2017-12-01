@@ -53,7 +53,8 @@
         <activity android:name=".samples.charsample.MpAndroidChartListActivity" />
         <activity android:name=".samples.charsample.MpAndroidChartListJavaActivity" />
         <activity android:name=".samples.charsample.LinearChartOneActivity" />
-        <activity android:name=".samples.charsample.BarChartActivity"></activity>
+        <activity android:name=".samples.charsample.BarChartActivity" />
+        <activity android:name=".samples.charsample.SampleDayOfKW"></activity>
     </application>
 
 </manifest>

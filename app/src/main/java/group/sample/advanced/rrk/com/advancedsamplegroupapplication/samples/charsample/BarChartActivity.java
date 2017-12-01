@@ -89,7 +89,6 @@ public class BarChartActivity extends DemoBase implements SeekBar.OnSeekBarChang
         xAxis.setLabelCount(7 );
         xAxis.setValueFormatter( xAxisFormatter );
 
-
         IAxisValueFormatter custom = new MyAxisValueFormatter();
 
         YAxis leftAxis = chart.getAxisLeft();
@@ -113,7 +112,7 @@ public class BarChartActivity extends DemoBase implements SeekBar.OnSeekBarChang
         legend.setHorizontalAlignment( Legend.LegendHorizontalAlignment.LEFT );
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL );
         legend.setDrawInside( false );
-        legend.setForm(Legend.LegendForm.SQUARE);
+//        legend.setForm(Legend.LegendForm.SQUA RE);
         legend.setFormSize(9f);
         legend.setTextSize(11f);
         legend.setXEntrySpace(4f);
