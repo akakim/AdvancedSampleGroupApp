@@ -56,6 +56,10 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         this.itemClickListener= itemClickListener;
     }
 
+    public void notifyDataSet(List<SampleItem> sampleItems){
+        this.sampleItems.addAll(sampleItems);
+        notifyDataSetChanged();
+    }
     @Override
     public SampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -84,6 +88,9 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
     @Override
     public int getItemCount() { return (sampleItems == null ) ? 0 : sampleItems.size(); }
+
+
+
 
     public class SampleViewHolder extends RecyclerView.ViewHolder {
 

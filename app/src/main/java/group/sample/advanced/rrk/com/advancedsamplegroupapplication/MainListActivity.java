@@ -18,6 +18,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.MpAndroidChartListJavaActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widget.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.database.*;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.*;
 
 public class MainListActivity extends BaseActivity implements SampleListAdapter.ItemClickListener {
 
@@ -42,6 +43,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleItems.add( new SampleItem(GetAllOfMusicItemsActivity.class,"음악 아이템을 모아놓음"));
         sampleItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
         sampleItems.add( new SampleItem(MpAndroidChartListJavaActivity.class,"MPAndroidChart 예제들"));
+        sampleItems.add( new SampleItem(MvpGroupActivity.class,"MVP로 구현한 예제"));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );

@@ -7,15 +7,20 @@ import android.widget.SeekBar;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.chartlib.custom.MonthAxisValueFormatter;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.chartlib.custom.MyAxisValueFormatter;
 
 public class SampleDayOfKW extends DemoBase implements OnChartValueSelectedListener {
 
@@ -57,6 +62,19 @@ public class SampleDayOfKW extends DemoBase implements OnChartValueSelectedListe
         xAxis.setPosition( XAxis.XAxisPosition.BOTTOM );
         xAxis.setDrawGridLines(true);
         xAxis.setGranularity( 1f ); // only intervals of 1 day
+        xAxis.setLabelCount(7 );
+        xAxis.setValueFormatter( xAxisFormatter );
+
+
+        IAxisValueFormatter custom = new MyAxisValueFormatter();
+
+//        YAxis rightAxis = chartPerMonth.getAxisRight();
+//        rightAxis.setDrawGridLines(false);
+////        rightAxis.setTypeface(mTfLight);
+//        rightAxis.setLabelCount(8, false);
+//        rightAxis.setValueFormatter(chartPerMonth);
+//        rightAxis.setSpaceTop(15f);
+//        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
     }
 
     @Override
@@ -67,5 +85,14 @@ public class SampleDayOfKW extends DemoBase implements OnChartValueSelectedListe
     @Override
     public void onNothingSelected() {
 
+    }
+
+    private void setData(int count,float range){
+        float start = 1;
+        ArrayList<BarEntry> yValue1 = new ArrayList<>();
+
+//        for(int i = (int ) start ; i< start + count + 1 ; i++){
+////            float mult =
+//        }
     }
 }
