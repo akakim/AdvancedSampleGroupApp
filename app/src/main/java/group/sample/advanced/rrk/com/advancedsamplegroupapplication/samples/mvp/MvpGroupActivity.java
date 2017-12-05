@@ -17,6 +17,9 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter.SampleListAdapter;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
 
+/**
+ *  추후에 Firebase를 이용한 로직 구현해보기.
+ */
 public class MvpGroupActivity extends AppCompatActivity implements MainGroupView,SampleListAdapter.ItemClickListener {
 
 
