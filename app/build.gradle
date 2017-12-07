@@ -55,12 +55,14 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
     compile 'com.android.support:cardview-v7:26.1.0'
-
+    compile project(':typekit')      // 폰트적용
+//    compile 'com.tsengvn:Typekit:1.0.0'
     // openSource
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
     compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
     compile 'com.afollestad:inquiry:5.0.0'
     compile 'com.afollestad:drag-select-recyclerview:0.3.6'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
+
 
 }

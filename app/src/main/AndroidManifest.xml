@@ -50,6 +50,7 @@
         <activity android:name=".samples.database.GetAllOfMusicItemsActivity" />
         <activity android:name=".samples.ButterKnifeExampleActivity" />
         <activity android:name=".samples.widget.TextInputLayoutCustomActivity" />
+        <activity android:name=".samples.widget.TypeFaceActivity" />
         <activity android:name=".samples.charsample.MpAndroidChartListActivity" />
         <activity android:name=".samples.charsample.MpAndroidChartListJavaActivity" />
         <activity android:name=".samples.charsample.LinearChartOneActivity" />

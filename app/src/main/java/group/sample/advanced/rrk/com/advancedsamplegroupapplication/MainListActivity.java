@@ -44,6 +44,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
         sampleItems.add( new SampleItem(MpAndroidChartListJavaActivity.class,"MPAndroidChart 예제들"));
         sampleItems.add( new SampleItem(MvpGroupActivity.class,"MVP로 구현한 예제"));
+        sampleItems.add( new SampleItem(TypeFaceActivity.class,"폰트 라이브러리 구현 예제 "));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
