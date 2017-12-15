@@ -15,7 +15,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="normal"/>
+        android:textStyle="normal"
+        tools:text="text Normal"/>
 
 
     <TextView
@@ -26,7 +27,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTypeNormal"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:text="bold Normal"/>
 
     <TextView
         android:id="@+id/tvIsNormal"
@@ -34,4 +36,13 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTypeBold" />
+
+
+    <TextView
+        android:id="@+id/tvIsCustom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvIsNormal" />
 </android.support.constraint.ConstraintLayout>

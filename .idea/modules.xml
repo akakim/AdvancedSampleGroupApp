@@ -6,7 +6,6 @@
       <module fileurl="file://D:\workspace2\AdvancedSampleGroupApp\AdvancedSampleGroupApplication.iml" filepath="D:\workspace2\AdvancedSampleGroupApp\AdvancedSampleGroupApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/typekit/typekit.iml" filepath="$PROJECT_DIR$/typekit/typekit.iml" />
     </modules>
   </component>
 </project>

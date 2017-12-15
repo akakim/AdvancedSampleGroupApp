@@ -39,12 +39,14 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         ButterKnife.bind(this);
 
         sampleItems.add( new SampleItem(IdentifyActivity.class,"Application 고유 ID 와 device의 고유 ID"));
-        sampleItems.add( new SampleItem(OpenViewPagerActivity.class,"뷰페이저 테스트를위한 페이지"));
+//        sampleItems.add( new SampleItem(OpenViewPagerActivity.class,"뷰페이저 테스트를위한 페이지"));
         sampleItems.add( new SampleItem(GetAllOfMusicItemsActivity.class,"음악 아이템을 모아놓음"));
         sampleItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
         sampleItems.add( new SampleItem(MpAndroidChartListJavaActivity.class,"MPAndroidChart 예제들"));
         sampleItems.add( new SampleItem(MvpGroupActivity.class,"MVP로 구현한 예제"));
         sampleItems.add( new SampleItem(TypeFaceActivity.class,"폰트 라이브러리 구현 예제 "));
+        sampleItems.add( new SampleItem(WebViewTesterActivity.class,"웹뷰 테스터 "));
+        sampleItems.add( new SampleItem(WebViewTesterActivity.class,"웹뷰 테스터 "));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
