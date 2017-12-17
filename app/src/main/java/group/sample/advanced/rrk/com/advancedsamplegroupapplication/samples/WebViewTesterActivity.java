@@ -35,7 +35,8 @@ public class WebViewTesterActivity extends AppCompatActivity {
             view.setWebViewClient(webViewClient );
             view.setWebChromeClient( webChromeClient);
 
-            view.loadUrl("http://showmethemoney.or.kr/%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C/");
+            view.loadUrl("http://tutorialspoint.com/android/sampleXML.xml");
+//            view.loadUrl("http://showmethemoney.or.kr/%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C/");
         }
     };
 

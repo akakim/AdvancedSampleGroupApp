@@ -27,6 +27,11 @@ public class HanldeXML {
     public volatile boolean parsingComplete = true;
 
 
+    handlerInterface anInterface;
+    public HanldeXML(String url,handlerInterface anInterface){
+        urlString = url;
+        this.anInterface = anInterface;
+    }
     public String getTitle() {
         return title;
     }
@@ -46,7 +51,6 @@ public class HanldeXML {
 
         try{
            event = myParser.getEventType();
-
            while (event != XmlPullParser.END_DOCUMENT ) {
                String name = myParser.getName();
 
@@ -76,7 +80,7 @@ public class HanldeXML {
                            break;
                    default:
                        Log.e("TAG","default value is occured...");
-                       event = myParser.next();
+//                       event = myParser.next();
                        break;
 
                }
@@ -131,7 +135,16 @@ public class HanldeXML {
                 } catch (XmlPullParserException e) {
                     e.printStackTrace();
                 }
+
+                anInterface.fetchEnded();
             };
         });
+
+        thread.start();
+    }
+
+
+    public interface handlerInterface{
+        public void fetchEnded();
     }
 }
