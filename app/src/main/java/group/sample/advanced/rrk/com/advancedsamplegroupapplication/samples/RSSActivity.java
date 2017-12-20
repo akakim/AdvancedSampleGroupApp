@@ -14,13 +14,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.BaseActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
-import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.HanldeXML;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.HandleXML;
 
-public class RSSActivity extends BaseActivity implements HanldeXML.handlerInterface {
-
-    public static final String RSS_FEED_KEY = "rssFeed";
-    @BindView(R.id.edBaseRSSFeedUrl)
-    TextInputEditText edBaseRSSFeedUrl;
+public class RSSActivity extends BaseActivity implements HandleXML.handlerInterface {
 
     @BindView(R.id.edTitle)
     TextInputEditText edTitle;
@@ -37,7 +33,7 @@ public class RSSActivity extends BaseActivity implements HanldeXML.handlerInterf
     @BindView(R.id.btnResult)
     Button btnResult;
 
-    private HanldeXML hanldeXML;
+    private HandleXML handleXML;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

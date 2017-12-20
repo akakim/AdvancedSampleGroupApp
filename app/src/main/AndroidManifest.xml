@@ -66,6 +66,8 @@
             android:value="c34004616c9989d5a6769716e715aa0c9ee96d8c" />
 
         <activity android:name=".samples.CrashActivity"></activity>
+        <activity android:name=".samples.RSSActivity" />
+        <activity android:name=".samples.JSoupActivity"></activity>
     </application>
 
 </manifest>
