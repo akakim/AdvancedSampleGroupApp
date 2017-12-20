@@ -65,9 +65,11 @@
             android:name="io.fabric.ApiKey"
             android:value="c34004616c9989d5a6769716e715aa0c9ee96d8c" />
 
-        <activity android:name=".samples.CrashActivity"></activity>
-        <activity android:name=".samples.RSSActivity" />
-        <activity android:name=".samples.JSoupActivity"></activity>
+        <activity android:name=".samples.CrashActivity" />
+        <activity android:name=".samples.JSoupActivity" />
+        <activity android:name=".cradle.WebViewActivity" />
+        <activity android:name=".cradle.MainParseActivity" />
+
     </application>
 
 </manifest>

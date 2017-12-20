@@ -18,4 +18,6 @@
     <dimen name="settings_control_text_margin">8dp</dimen>
     <dimen name="settings_control_height">48dp</dimen>
     <dimen name="header_textsize">20sp</dimen>
+
+    <dimen name="default_padding">7dp</dimen>
 </resources>

@@ -1,9 +1,15 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ProgressBar;
+
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.views.BigProgressDialog;
 
 
 /**
@@ -13,10 +19,19 @@ import android.support.v7.app.AppCompatActivity;
  * @since 0.0.1
  */
 
-public class BaseActivity extends AppCompatActivity{
+public class BaseActivity extends AppCompatActivity implements DialogInterface.OnCancelListener{
 
 
-    Handler baseHandler;
+    protected     Handler baseHandler;
+
+    protected BigProgressDialog progressBar;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        progressBar = new BigProgressDialog(this,true,this);
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -41,5 +56,10 @@ public class BaseActivity extends AppCompatActivity{
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.move_left_in_activity, R.anim.move_right_out_activity);
+    }
+
+    @Override
+    public void onCancel(DialogInterface dialog) {
+        dialog.dismiss();
     }
 }
