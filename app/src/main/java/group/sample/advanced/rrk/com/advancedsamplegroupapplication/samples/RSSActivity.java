@@ -18,6 +18,11 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.HandleX
 
 public class RSSActivity extends BaseActivity implements HandleXML.handlerInterface {
 
+    public static final String RSS_FEED_KEY = "rssFeed";
+
+    @BindView(R.id.edBaseRSSFeedUrl)
+    TextInputEditText edBaseRSSFeedUrl;
+
     @BindView(R.id.edTitle)
     TextInputEditText edTitle;
 
@@ -48,12 +53,12 @@ public class RSSActivity extends BaseActivity implements HandleXML.handlerInterf
     @OnClick(R.id.btnFetch)
     public void fetch(){
         try {
-            hanldeXML = new HanldeXML("http://showmethemoney.or.kr/","보도자료",this);
+            handleXML = new HandleXML("http://showmethemoney.or.kr/","보도자료",this);
         }catch (UnsupportedEncodingException e){
             e.printStackTrace();
         }
 
-        hanldeXML.fetchXML();
+        handleXML.fetchXML();
     }
 
     @OnClick(R.id.btnResult)
@@ -68,9 +73,9 @@ public class RSSActivity extends BaseActivity implements HandleXML.handlerInterf
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                edTitle.setText( hanldeXML.getTitle());
-                edLink.setText( hanldeXML.getLink());
-                edDescription.setText( hanldeXML.getDescription());
+                edTitle.setText( handleXML.getTitle());
+                edLink.setText( handleXML.getLink());
+                edDescription.setText( handleXML.getDescription());
             }
         });
 
