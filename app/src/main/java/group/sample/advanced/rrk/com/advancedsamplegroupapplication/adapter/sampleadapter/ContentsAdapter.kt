@@ -60,8 +60,8 @@ class ContentsAdapter(context: Context,items : MutableList<ContentsItem>,listene
         val  contents : TextView
 
         init {
-            title = itemView!!.findViewById(R.id.title)
-            contents = itemView!!.findViewById(R.id.contents)
+            title = itemView?.findViewById(R.id.title)!!
+            contents = itemView?.findViewById(R.id.contents)!!
         }
 
 

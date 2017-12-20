@@ -41,6 +41,9 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.utils.Prefs;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.utils.Utils;
 import static group.sample.advanced.rrk.com.advancedsamplegroupapplication.utils.Utils.log;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.widget.ColorCircleView;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
+
 
 public class MainActivityJava extends AppCompatActivity implements DragSelectRecyclerViewAdapter.SelectionListener{
 

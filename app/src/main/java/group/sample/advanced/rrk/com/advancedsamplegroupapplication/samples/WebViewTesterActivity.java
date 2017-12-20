@@ -65,7 +65,25 @@ public class WebViewTesterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         webChromeClient = new WebChromeClient();
         webViewClient = new WebViewClient();
-        ButterKnife.apply(mainWeb,initAction);
+
+        if( getIntent() != null) {
+
+            String RSS_FEED_KEY = getIntent().getExtras().getString(RSSActivity.RSS_FEED_KEY);
+
+            ButterKnife.apply(mainWeb, new ButterKnife.Action<WebView>() {
+                @Override
+                public void apply(@NonNull WebView view, int index) {
+                    WebSettings webSettings = view.getSettings();
+                    view.setWebViewClient(webViewClient );
+                    view.setWebChromeClient( webChromeClient);
+
+                    view.loadUrl(RSS_FEED_KEY);
+                }
+            });
+
+        }else {
+            ButterKnife.apply(mainWeb, initAction);
+        }
         ButterKnife.apply(edInputURL,searchEditAction);
     }
 

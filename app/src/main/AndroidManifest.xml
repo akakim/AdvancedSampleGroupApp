@@ -59,7 +59,13 @@
         <activity android:name=".samples.charsample.SampleDayOfKW" />
         <activity android:name=".samples.mvp.MvpGroupActivity" />
         <activity android:name=".samples.WebViewTesterActivity" />
-        <activity android:name=".samples.RSSActivity"></activity>
+        <activity android:name=".samples.RSSActivity" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="c34004616c9989d5a6769716e715aa0c9ee96d8c" />
+
+        <activity android:name=".samples.CrashActivity"></activity>
     </application>
 
 </manifest>

@@ -68,4 +68,7 @@
     <string name="hintPassword">패스워드</string>
     <string name="hintAmount">수량</string>
 
+
+    <string name="com.crashlytics.useFirebaseAppId">true</string>
+
 </resources>

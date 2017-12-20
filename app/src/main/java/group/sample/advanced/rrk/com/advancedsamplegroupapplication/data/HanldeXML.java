@@ -8,10 +8,12 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 
 /**
  * Created by RyoRyeong Kim on 2017-12-15.
@@ -30,6 +32,17 @@ public class HanldeXML {
     handlerInterface anInterface;
     public HanldeXML(String url,handlerInterface anInterface){
         urlString = url;
+        this.anInterface = anInterface;
+    }
+
+    public HanldeXML(String urlBase,String postFixKorean, handlerInterface anInterface) throws UnsupportedEncodingException {
+
+        StringBuilder builder = new StringBuilder();
+
+
+        builder.append(urlBase);
+        builder.append(URLEncoder.encode(postFixKorean,"UTF-8"));
+        urlString = builder.toString();
         this.anInterface = anInterface;
     }
     public String getTitle() {
@@ -56,13 +69,14 @@ public class HanldeXML {
 
                switch (event) {
                    case XmlPullParser.START_TAG:
-
+                       Log.d("TAG","XmlPullParser.StartTag..");
                        break;
                    case XmlPullParser.TEXT:
+                       Log.d("TAG","XmlPullParser.TEXT.. : myParserText" + myParser.getText());
                        text = myParser.getText();
                        break;
                    case XmlPullParser.END_TAG:
-
+                       Log.d("TAG","XmlPullParser.EndTag.." +name);
 
                        if(name.equals("title")){
                            title = text;
@@ -75,17 +89,14 @@ public class HanldeXML {
                        else if(name.equals("description")){
                            description = text;
                        }
-
-                        event = myParser.next();
                            break;
                    default:
                        Log.e("TAG","default value is occured...");
-//                       event = myParser.next();
                        break;
 
                }
 
-
+               event = myParser.next();
 
            }
 
@@ -106,6 +117,9 @@ public class HanldeXML {
 
                 try{
                     URL url  = new URL (urlString);
+
+
+
 
                     HttpURLConnection  urlConnection = (HttpURLConnection )url.openConnection();
                     urlConnection.setReadTimeout(10000);
@@ -146,5 +160,6 @@ public class HanldeXML {
 
     public interface handlerInterface{
         public void fetchEnded();
+        public void fetchError();
     }
 }

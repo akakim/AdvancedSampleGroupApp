@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.crashlytics.android.Crashlytics;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.char
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widget.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.database.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.*;
+import io.fabric.sdk.android.Fabric;
 
 public class MainListActivity extends BaseActivity implements SampleListAdapter.ItemClickListener {
 
@@ -34,7 +37,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_list);
-
+        Fabric.with(this, new Crashlytics());
 
         ButterKnife.bind(this);
 
@@ -47,6 +50,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleItems.add( new SampleItem(TypeFaceActivity.class,"폰트 라이브러리 구현 예제 "));
         sampleItems.add( new SampleItem(WebViewTesterActivity.class,"웹뷰 테스터 "));
         sampleItems.add( new SampleItem(RSSActivity.class,"RSS 테스터 "));
+        sampleItems.add( new SampleItem(CrashActivity.class,"firebase Crash 보고서  "));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
