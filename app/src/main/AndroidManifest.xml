@@ -59,7 +59,8 @@
         <activity android:name=".samples.charsample.SampleDayOfKW" />
         <activity android:name=".samples.mvp.MvpGroupActivity" />
         <activity android:name=".samples.WebViewTesterActivity" />
-        <activity android:name=".samples.RSSActivity"></activity>
+        <activity android:name=".samples.RSSActivity" />
+        <activity android:name=".samples.JSoupActivity"></activity>
     </application>
 
 </manifest>

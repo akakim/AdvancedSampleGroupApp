@@ -17,7 +17,7 @@ import java.net.URLConnection;
  * Created by RyoRyeong Kim on 2017-12-15.
  */
 
-public class HanldeXML {
+public class HandleXML {
 
     private String title = "title";
     private String link ="link";
@@ -28,7 +28,7 @@ public class HanldeXML {
 
 
     handlerInterface anInterface;
-    public HanldeXML(String url,handlerInterface anInterface){
+    public HandleXML(String url, handlerInterface anInterface){
         urlString = url;
         this.anInterface = anInterface;
     }

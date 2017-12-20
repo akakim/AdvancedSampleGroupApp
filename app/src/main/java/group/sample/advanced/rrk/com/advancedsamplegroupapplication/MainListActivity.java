@@ -47,6 +47,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleItems.add( new SampleItem(TypeFaceActivity.class,"폰트 라이브러리 구현 예제 "));
         sampleItems.add( new SampleItem(WebViewTesterActivity.class,"웹뷰 테스터 "));
         sampleItems.add( new SampleItem(RSSActivity.class,"RSS 테스터 "));
+        sampleItems.add( new SampleItem(JSoupActivity.class,"JSoup HTML 파서 . "));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
