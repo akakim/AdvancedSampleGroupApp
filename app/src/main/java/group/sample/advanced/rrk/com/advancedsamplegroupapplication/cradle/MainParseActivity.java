@@ -57,7 +57,7 @@ public class MainParseActivity extends BaseActivity implements MainParseUIView{
     @Override
     public void initContent() {
 
-        Jsoup jsoup
+//        Jsoup jsoup/
 
     }
 
