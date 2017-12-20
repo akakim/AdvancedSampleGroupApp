@@ -31,12 +31,12 @@ public class BigProgressDialog extends AlertDialog{
 
     public BigProgressDialog(Context context, boolean cancelable, OnCancelListener cancelListener) {
         super(context, cancelable, cancelListener);
-
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.big_progress_dialog_layout);
 
         ButterKnife.bind(this );
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         getWindow().setBackgroundDrawable( new ColorDrawable(Color.TRANSPARENT));
         setCancelable(cancelable);
     }

@@ -13,8 +13,6 @@ public class MainParsePresenterImpl implements MainParsePresenter,ParseMainInter
     public MainParsePresenterImpl(MainParseUIView mainParseUIView) {
         this.mainParseUIView = mainParseUIView;
 
-
-        mainParseUIView.showProgress();
     }
 
     @Override

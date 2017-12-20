@@ -15,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter.SampleListAdapter;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle.MainParseActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.MpAndroidChartListJavaActivity;
@@ -52,6 +53,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleItems.add( new SampleItem(RSSActivity.class,"RSS 테스터 "));
         sampleItems.add( new SampleItem(JSoupActivity.class,"JSoup HTML 파서 . "));
         sampleItems.add( new SampleItem(CrashActivity.class,"firebase Crash 보고서  "));
+        sampleItems.add( new SampleItem(MainParseActivity.class,"MainParse Activity cradle의 시작 "));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );

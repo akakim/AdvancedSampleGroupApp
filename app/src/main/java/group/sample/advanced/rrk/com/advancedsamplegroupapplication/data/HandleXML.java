@@ -35,7 +35,7 @@ public class HandleXML {
         this.anInterface = anInterface;
     }
 
-    public HanldeXML(String urlBase,String postFixKorean, handlerInterface anInterface) throws UnsupportedEncodingException {
+    public HandleXML(String urlBase,String postFixKorean, handlerInterface anInterface) throws UnsupportedEncodingException {
 
         StringBuilder builder = new StringBuilder();
 
