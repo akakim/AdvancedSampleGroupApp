@@ -6,5 +6,6 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 
 public interface MainParsePresenter {
 
+    void initContent(Runnable runnable);
     void onItemClicked(int position);
 }

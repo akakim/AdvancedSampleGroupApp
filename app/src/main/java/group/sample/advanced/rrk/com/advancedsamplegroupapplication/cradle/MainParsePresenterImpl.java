@@ -8,10 +8,20 @@ public class MainParsePresenterImpl implements MainParsePresenter,ParseMainInter
 
 
     MainParseUIView mainParseUIView;
-
+    ParseMainInteractorImpl parseMainInteractor;
 
     public MainParsePresenterImpl(MainParseUIView mainParseUIView) {
         this.mainParseUIView = mainParseUIView;
+        parseMainInteractor = new ParseMainInteractorImpl();
+    }
+
+
+    @Override
+    public void initContent(Runnable runnable) {
+
+
+        mainParseUIView.showMessage("데이터 로딩중 ");
+        parseMainInteractor.init(runnable);
 
     }
 

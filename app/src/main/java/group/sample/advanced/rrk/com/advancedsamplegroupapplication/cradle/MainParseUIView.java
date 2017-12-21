@@ -4,6 +4,7 @@ public interface MainParseUIView {
 
     void initContent();
 
+    void showProgress(String message);
     void responseFailed(String result);
     void responseSuccess(String result);
 

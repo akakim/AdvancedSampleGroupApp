@@ -10,6 +10,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Attributes;
 import org.jsoup.nodes.Document;
@@ -35,6 +37,7 @@ public class MainParseActivity extends BaseActivity implements MainParseUIView{
     TextView tvContentResult;
 
 
+    JSONObject resultObject = new JSONObject();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,64 +49,32 @@ public class MainParseActivity extends BaseActivity implements MainParseUIView{
         ButterKnife.bind(this);
 
         tvContentResult.setMovementMethod(new ScrollingMovementMethod());
-//        progressBar.setScrollBar;
-        initContent();
 
-    }
+        mainParsePresenter.initContent(()->{
+            final StringBuilder builder = new StringBuilder();
 
+            try{
 
-    // csp_best 베스트 청원
-    //
+                Connection connection = Jsoup.connect(Constants.PUBLIC_OPINION_BASE_URL);
+                connection.timeout(5000);
+                Document doc = connection.get();
+                Elements classDivs = doc.select("div[class]");
 
-    @Override
-    public void initContent() {
-        if( !progressBar.isShowing() ){
-            progressBar.show();
-        }
+                int i = 0;
+                for( Element ele : classDivs ){
 
-        Thread task = new Thread(
-                ()->{
-                        final StringBuilder builder = new StringBuilder();
+                    i++;
 
-                        try{
-                            Document doc = Jsoup.connect(Constants.PUBLIC_OPINION_BASE_URL).get();
+                    switch (ele.attr("class")){
+                        case "cspb_info text":
 
-                            Elements classDivs = doc.select("div[class]");
+                            builder.append("title " + ele.select("h5").text());
+                            builder.append("title " + ele.select("p").text());
 
-                            int i = 0;
-                            for( Element ele : classDivs ){
-
-                                i++;
-
-                                switch (ele.attr("class")){
-                                    case "cspb_info text":
-
-                                        builder.append("title " +  ele.attr("h5"));
-                                        builder.append("title " + ele.select("h5").text());
-                                        builder.append("title " + ele.select("p").text());
-
-//                                        Attributes attributes = ele.attributes();
-//
-//                                        Set<String> keys = attributes.dataset().keySet();
-//
-//                                        while( keys.iterator().hasNext() ){
-//                                            builder.append( keys.iterator().next() +"\n");
-//                                        }
-
-
-//                                        Iterable<String> iter =  keys.iterator();
-//                                        for(  keys.iterator()){
-//
-
-
-//                                        String title = ele.attr("h5");
-////                                        ele.attributes();
-//                                        String conetnt = ele.attr("p");
-//                                        builder.append(  "title : " + title + "\ncontent: " + conetnt + "\n");
-                                        break;
-                                    default:
-                                        break;
-                                }
+                            break;
+                        default:
+                            break;
+                    }
 
 //                                if( ele.attr("class").equals("csp_best")){
 //
@@ -119,35 +90,49 @@ public class MainParseActivity extends BaseActivity implements MainParseUIView{
 //                                    builder.append(  ele.text() );
 //                                }
 //                                builder.append( "best : " + ele.attr("csp_best") ) ;
-
 //                                builder.append("")
 //                                builder.append( " ele : " + i + ": " + ele.text()+ " \n");
 
 
-                            }
-                            responseSuccess(builder.toString());
-                        } catch (MalformedInputException e){
-                            builder.append("MalformedInputException : " + e.getMessage());
-                            responseFailed(builder.toString());
-                            e.printStackTrace();
-                        }
-                        catch (IOException e ){
-                            builder.append("IOException : " + e.getMessage());
-                            responseFailed(builder.toString());
-                            e.printStackTrace();
-                        }catch (Exception e){
-                            builder.append("Exception : " + e.getMessage());
-                            responseFailed(builder.toString());
-                            e.printStackTrace();
-                        }
+                }
+                responseSuccess(builder.toString());
+            } catch (MalformedInputException e){
+                builder.append("MalformedInputException : " + e.getMessage());
+                responseFailed(builder.toString());
+                e.printStackTrace();
+            } catch (IOException e ){
+                builder.append("IOException : " + e.getMessage());
+                responseFailed(builder.toString());
+                e.printStackTrace();
+            }catch (Exception e){
+                builder.append("Exception : " + e.getMessage());
+                responseFailed(builder.toString());
+                e.printStackTrace();
+            }
 
-                     }
+//            mainParsePresenter.onItemClicked(;;;);
+        } );
+        initContent();
+
+    }
+
+
+    // csp_best 베스트 청원
+    //
+
+    @Override
+    public void initContent() {
+        if( !progressBar.isShowing() ){
+            progressBar.show();
+        }
+
+        Thread task = new Thread(
         );
         task.start();
+    }
 
-
-
-//        Jsoup jsoup/
+    @Override
+    public void showProgress(String message) {
 
     }
 

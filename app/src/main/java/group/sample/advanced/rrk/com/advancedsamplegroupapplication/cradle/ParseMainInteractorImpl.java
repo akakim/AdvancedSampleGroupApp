@@ -6,7 +6,8 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 
 public class ParseMainInteractorImpl implements ParseMainInteractor {
     @Override
-    public void init() {
+    public void init(Runnable runnable) {
+
 
     }
 }

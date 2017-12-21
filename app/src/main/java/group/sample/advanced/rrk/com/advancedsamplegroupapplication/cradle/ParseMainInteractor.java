@@ -10,5 +10,5 @@ public interface ParseMainInteractor {
         String onFinished();
     }
 
-    void init();
+    void init(Runnable runnable);
 }
