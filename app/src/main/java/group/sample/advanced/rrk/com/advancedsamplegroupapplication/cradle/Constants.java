@@ -13,6 +13,7 @@ import java.nio.charset.MalformedInputException;
 public class Constants {
 
     public static final String PUBLIC_OPINION_BASE_URL = "https://www1.president.go.kr/petitions";
+    public static final String PUBLIC_OPINION_BOARD_QUERY_PARAM = "page";
 //    public static final Runnable PUBLIC_OPINION_BASE_TASK = new Runnable() {
 //        @Override
 //        public void run() {

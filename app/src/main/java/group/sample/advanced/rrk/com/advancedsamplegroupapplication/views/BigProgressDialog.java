@@ -1,6 +1,7 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication.views;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -16,7 +17,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
  * Created by RyoRyeong Kim on 2017-12-20.
  */
 
-public class BigProgressDialog extends AlertDialog{
+public class BigProgressDialog extends Dialog {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -56,6 +57,6 @@ public class BigProgressDialog extends AlertDialog{
     @Override
     public void dismiss() {
         super.dismiss();
-        progressBar.clearAnimation();
+
     }
 }
