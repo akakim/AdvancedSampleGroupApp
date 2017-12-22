@@ -1,5 +1,10 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+
+import java.util.Map;
+
 /**
  * Created by RyoRyeong Kim on 2017-12-20.
  */
@@ -7,8 +12,9 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 public interface ParseMainInteractor {
 
     interface OnFinishedListener{
-        String onFinished();
+        void onFinished(final boolean isError,String responseData,BoardData data);
     }
 
-    void init(Runnable runnable);
+    void init(AppCompatActivity activity);
+    void initFragment(Fragment fragment);
 }

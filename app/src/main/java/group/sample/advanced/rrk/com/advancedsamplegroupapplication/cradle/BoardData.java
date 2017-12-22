@@ -6,7 +6,7 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 
 public class BoardData {
 
-    String numberOfContent;
+    String numberOfContent;         // 0 인경우는 베스트 청원임.
     String category;
     String title;
     String author;
