@@ -67,8 +67,6 @@ public class MainParseActivity extends BaseActivity implements MainParseUIView{
     }
 
 
-
-
     @Override
     public void showMessage(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();

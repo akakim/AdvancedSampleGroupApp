@@ -69,7 +69,10 @@
         <activity android:name=".samples.JSoupActivity" />
         <activity android:name=".cradle.WebViewActivity" />
         <activity android:name=".cradle.MainParseActivity" />
-
+        <activity android:name=".samples.widget.CoordinatorSamples" />
+        <activity android:name=".samples.widget.FabAndSnackBarActivity"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        <activity android:name=".samples.widget.FabScrollBehavior"></activity>
     </application>
 
 </manifest>

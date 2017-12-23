@@ -54,6 +54,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleItems.add( new SampleItem(JSoupActivity.class,"JSoup HTML 파서 . "));
         sampleItems.add( new SampleItem(CrashActivity.class,"firebase Crash 보고서  "));
         sampleItems.add( new SampleItem(MainParseActivity.class,"MainParse Activity cradle의 시작 "));
+        sampleItems.add( new SampleItem(CoordinatorSamples.class,"CoordinatorSample 예제들 Activity"));
 
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
