@@ -6,6 +6,8 @@ import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONObject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.BaseActivity;
@@ -61,9 +63,9 @@ public class MainParseActivity extends BaseActivity implements MainParseUIView{
     }
 
     @Override
-    public void responseSuccess(String result, BoardData boardData) {
+    public void responseSuccess(String result, JSONObject boardData) {
         progressBar.dismiss();
-        tvContentResult.setText(result);
+//        tvContentResult.setText(result);
     }
 
 

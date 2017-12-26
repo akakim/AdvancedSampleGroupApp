@@ -2,6 +2,7 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 
 import android.support.v7.app.AppCompatActivity;
 
+import org.json.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -48,7 +49,7 @@ public class MainParsePresenterImpl implements MainParsePresenter,ParseMainInter
 
 
     @Override
-    public void onFinished(final boolean isError,final String responseData,final BoardData data) {
+    public void onFinished(final boolean isError,final String responseData,final JSONObject data) {
 
         if( isError ){
             mainParseUIView.responseFailed(responseData);

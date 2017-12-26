@@ -3,6 +3,7 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import org.json.JSONObject;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,6 +28,7 @@ public class ParseMainInteractorImpl implements ParseMainInteractor {
 
         fullBoardTask = () -> {
                 final StringBuilder builder = new StringBuilder();
+                final JSONObject jsonObject = new JSONObject();
 
                 try{
 
@@ -53,20 +55,20 @@ public class ParseMainInteractorImpl implements ParseMainInteractor {
                         }
                     }
 
-                    onFinishedListener.onFinished(false, builder.toString(),new BoardData());
+                    onFinishedListener.onFinished(false, builder.toString(),jsonObject);
                 } catch (MalformedInputException e){
                     builder.append("MalformedInputException : " + e.getMessage());
 
                     e.printStackTrace();
-                    onFinishedListener.onFinished(true,builder.toString(),new BoardData());
+                    onFinishedListener.onFinished(true,builder.toString(),jsonObject);
                 } catch (IOException e ){
                     builder.append("IOException : " + e.getMessage());
                     e.printStackTrace();
-                    onFinishedListener.onFinished(true,builder.toString(),new BoardData());
+                    onFinishedListener.onFinished(true,builder.toString(),jsonObject);
                 }catch (Exception e){
                     builder.append("Exception : " + e.getMessage());
                     e.printStackTrace();
-                    onFinishedListener.onFinished(true,builder.toString(),new BoardData());
+                    onFinishedListener.onFinished(true,builder.toString(),jsonObject);
                 }
         };
     }

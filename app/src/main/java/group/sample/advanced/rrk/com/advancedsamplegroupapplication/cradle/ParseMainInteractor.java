@@ -3,6 +3,8 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Map;
 public interface ParseMainInteractor {
 
     interface OnFinishedListener{
-        void onFinished(final boolean isError,String responseData,BoardData data);
+        void onFinished(final boolean isError,String responseData,JSONObject data);
     }
 
     void init(AppCompatActivity activity);

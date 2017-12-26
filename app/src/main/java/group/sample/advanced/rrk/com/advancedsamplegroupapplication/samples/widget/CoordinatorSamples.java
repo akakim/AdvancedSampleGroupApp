@@ -17,7 +17,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter.Samp
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle.MainParseActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
 
-
+/* http://partnerjun.tistory.com/43 */
 public class CoordinatorSamples extends BaseActivity implements SampleListAdapter.ItemClickListener {
 
 
@@ -35,7 +35,7 @@ public class CoordinatorSamples extends BaseActivity implements SampleListAdapte
 
 
         sampleItems.add(new SampleItem(FabAndSnackBarActivity.class,"FabAndSnackBarActivity"));
-        sampleItems.add(new SampleItem(FabScrollBehavior.class,"FabScrollBehavior"));
+        sampleItems.add(new SampleItem(FabScrollBehavior.class,"스크롤 커스터마이징 AppbarLayout과 같이"));
 
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
 
