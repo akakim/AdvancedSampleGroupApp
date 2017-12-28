@@ -6,18 +6,25 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import kotlinx.android.synthetic.main.activity_tae_won_main.*
 import kotlinx.android.synthetic.main.app_bar_tae_won_main.*
 import tripath.com.kot.R
 
 class TaeWonMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener ,MainContract.View{
 
+    init {
+        Log.d(javaClass.simpleName,"in init()")
+    }
 
     private val recyclerView by lazy {
         findViewById(R.id.recyclerView) as RecyclerView
+//        Log.d(javaClass.simpleName,"lazy time")
     }
 
     private lateinit var imageAdapter : ImageAdapter
@@ -49,6 +56,11 @@ class TaeWonMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tae_won_main)
+        if(recyclerView == null){
+            Log.e(javaClass.simpleName,"after set Content View recyclerView is Null")
+        }else {
+            Log.d(javaClass.simpleName,"after set Content View recyclerView is not Null")
+        }
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
@@ -67,6 +79,9 @@ class TaeWonMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // start Main Presenter
 
         imageAdapter = ImageAdapter( this )
+
+        Log.d(javaClass.simpleName,"onCreate() LayoutManger");
+        recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = imageAdapter
 
         presenter = MainPresenter().apply {
@@ -129,6 +144,5 @@ class TaeWonMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
-
 
 }

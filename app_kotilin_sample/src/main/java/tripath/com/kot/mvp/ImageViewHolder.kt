@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import tripath.com.kot.R
 
 /**
@@ -27,6 +28,9 @@ class ImageViewHolder(val context: Context, parent: ViewGroup?,val listenerFunc 
 
     fun onBind(item: ImageItem, position : Int){
         ImageAsynchronize(context,ivDefault).execute(item.resources)
+
+//        Glide.with(context).load( item.resources).into(ivDefault).onLoadFailed();
+
         tvContent.text = item.title
 
         itemView.setOnClickListener {

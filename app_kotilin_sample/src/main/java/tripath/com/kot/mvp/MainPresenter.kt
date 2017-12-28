@@ -1,6 +1,7 @@
 package tripath.com.kot.mvp
 
 import android.content.Context
+import android.util.Log
 
 /**
  * Created by RyoRyeong Kim on 2017-12-28.
@@ -22,7 +23,7 @@ class MainPresenter : MainContract.Presenter{
         }
 
     override fun loadItem(context: Context, isClear: Boolean) {
-
+        Log.d(this.javaClass.simpleName,"loadItem() " + isClear )
         imageData.getImages(context,10,object : TaeWonImageSource.LoadImageCallback {
             override fun onLoadImage(list: ArrayList<ImageItem>) {
 

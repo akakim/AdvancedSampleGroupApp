@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.AsyncTask
+import android.util.Log
 import android.widget.ImageView
 import java.lang.ref.WeakReference
 
@@ -23,6 +24,7 @@ class ImageAsynchronize(val context: Context, imageView: ImageView?): AsyncTask<
 
     override fun onPreExecute() {
         super.onPreExecute()
+        Log.d(this.javaClass.simpleName,"onPreExecuted()")
         imageViewReference.get()?.setImageResource(0)
     }
 
@@ -37,6 +39,9 @@ class ImageAsynchronize(val context: Context, imageView: ImageView?): AsyncTask<
     override fun onPostExecute(result: Bitmap?) {
         super.onPostExecute(result)
 
+        if (result == null){
+            Log.e(javaClass.simpleName,"foo result Bitmap is null ");
+        }
         result?.let { imageViewReference.get()?.setImageBitmap( result )}
     }
 }

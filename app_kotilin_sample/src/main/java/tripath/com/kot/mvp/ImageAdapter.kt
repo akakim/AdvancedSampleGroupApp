@@ -2,6 +2,7 @@ package tripath.com.kot.mvp
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.ViewGroup
 
 /**
@@ -15,6 +16,11 @@ class ImageAdapter(val context:Context) : ImageAdapterContract.View, RecyclerVie
 
     override fun setItem(imageItems: ArrayList<ImageItem>) {
         this.imageList = imageItems
+
+        for( item in imageItems ){
+            Log.d("setItem()", item.title )
+            Log.d("setItem()", item.resources.toString() )
+        }
     }
 
     override fun addItems(imageItem: ImageItem) {
@@ -45,5 +51,6 @@ class ImageAdapter(val context:Context) : ImageAdapterContract.View, RecyclerVie
 
     override fun notifyAdapter() {
         notifyDataSetChanged()
+        Log.d(this.javaClass.simpleName,"notifyAdapter()")
     }
 }
