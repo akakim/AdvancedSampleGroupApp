@@ -44,7 +44,6 @@
         </activity>
         <activity android:name=".samples.IdentifyActivity" />
         <activity android:name=".samples.QueryContentsProviderActivity" />
-        <activity android:name=".samples.QueryContentsResolverActivity" />
         <activity android:name=".samples.OpenViewPagerActivity" />
         <activity android:name=".samples.widget.ConstraintLayoutListActivity" />
         <activity android:name=".samples.database.GetAllOfItems" />
@@ -70,9 +69,11 @@
         <activity android:name=".cradle.WebViewActivity" />
         <activity android:name=".cradle.MainParseActivity" />
         <activity android:name=".samples.widget.CoordinatorSamples" />
-        <activity android:name=".samples.widget.FabAndSnackBarActivity"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-        <activity android:name=".samples.widget.FabScrollBehavior"></activity>
+        <activity
+            android:name=".samples.widget.FabAndSnackBarActivity"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        <activity android:name=".samples.widget.FabScrollBehavior" />
+        <activity android:name=".samples.mvp.TaeWonActivity"></activity>
     </application>
 
 </manifest>

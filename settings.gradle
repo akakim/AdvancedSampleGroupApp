@@ -1,2 +1,2 @@
 include 'MPChartLib'
-include ':app'
+include ':app', ':app_kotilin_sample'
