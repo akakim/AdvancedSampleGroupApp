@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AdvancedSampleGroupApp.iml" filepath="$PROJECT_DIR$/AdvancedSampleGroupApp.iml" />
-      <module fileurl="file://C:\Users\KIM\AndroidStudioProjects\AdvancedSampleGroupApplication\AdvancedSampleGroupApp.iml" filepath="C:\Users\KIM\AndroidStudioProjects\AdvancedSampleGroupApplication\AdvancedSampleGroupApp.iml" />
-      <module fileurl="file://D:\workspace2\AdvancedSampleGroupApp\AdvancedSampleGroupApplication.iml" filepath="D:\workspace2\AdvancedSampleGroupApp\AdvancedSampleGroupApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
-      <module fileurl="file://C:\Users\KIM\AndroidStudioProjects\AdvancedSampleGroupApplication\MPChartLib\MPChartLib.iml" filepath="C:\Users\KIM\AndroidStudioProjects\AdvancedSampleGroupApplication\MPChartLib\MPChartLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app_kotilin_sample/app_kotilin_sample.iml" filepath="$PROJECT_DIR$/app_kotilin_sample/app_kotilin_sample.iml" />
     </modules>

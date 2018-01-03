@@ -2,14 +2,28 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.SwipeDismissBehavior;
 import android.support.v13.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,20 +37,128 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 
 public class TSnackBar {
 
+    public static abstract class Callback{
+        public static final int DISMISS_EVENT_SWIPE   = 0;
+        public static final int DISMISS_EVENT_ACTION  = 1;
+        public static final int DISMISS_EVENT_TIMEOUT = 2;
+        public static final int DISMISS_EVENT_MANUAL  = 3;
+        public static final int DISMISS_EVENT_CONSECUTIVE = 4;
 
-//    private final ViewGroup parent;
-//    private final Context context;
-//    private final SnackBarLayout view;
+        @IntDef({
+                DISMISS_EVENT_SWIPE, DISMISS_EVENT_ACTION , DISMISS_EVENT_TIMEOUT,
+                DISMISS_EVENT_MANUAL ,DISMISS_EVENT_CONSECUTIVE
+        })
+        @Retention(RetentionPolicy.SOURCE) // TODO : 알아보기
+        public @interface DismissEvent{
+
+        }
+
+        public void onDismiss(TSnackBar snackBar,@DismissEvent int event ){
+
+        }
+
+        public void onShown(TSnackBar snackBar){
+
+        }
+    }
+
+
+    public static final int LENGTH_INDEFINITE = -2;
+    public static final int LENGTH_SHORT = -1;
+    public static final int LENGTH_LONG = 0;
+
+    @IntDef({LENGTH_INDEFINITE, LENGTH_SHORT, LENGTH_LONG})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Duration{
+
+    }
+
+
+    public static final int ANIMATION_DURATION = 250;
+    public static final int ANIMATION_FADE_DURATION = 180;
+    private static final Handler handler;
+    private static final int MSG_SHOW= 0;
+    private static final int MSG_DISMISS= 1;
+
+    static {
+        handler = new Handler (Looper.getMainLooper(), new Handler.Callback(){
+
+            @Override
+            public boolean handleMessage(Message msg) {
+                switch (msg.what) {
+                    case MSG_SHOW:
+//                        ((TSnackBar) msg.obj).showView();
+                        return true;
+                    case MSG_DISMISS:
+//                        ((TSnackBar) msg.obj).hideView(msg.arg1);
+                        return true;
+                }
+                return false;
+            }
+        });
+    }
+    private final ViewGroup parent;
+    private final Context context;
+    private final SnackBarLayout view;
+
+
+    public TSnackBar(ViewGroup parent) {
+        this.parent = parent;
+        this.context = parent.getContext();
+        view = (SnackBarLayout)LayoutInflater.from(this.context).inflate(R.layout.tsnackbar_layout,this.parent,false);
+    }
+
+    @NonNull
+    public static TSnackBar make(@NonNull View view, @NonNull CharSequence text,
+                                 @Duration int duration){
+
+            TSnackBar snackBar = new TSnackBar(findSuitableParent(view));
+            snackBar.setText(text);
+            snackBar.setDuration(duration);
+
+            return snackBar;
+    }
+
+    @NonNull
+    public static TSnackBar make(@NonNull View view, @StringRes int resId, @Duration int duration) {
+        return make(view, view.getResources()
+                .getText(resId), duration);
+    }
 
 
 
+    private static ViewGroup findSuitableParent(View view){
+        ViewGroup fallback = null;
+
+        do{
+
+            if (view instanceof CoordinatorLayout) {
+                return (ViewGroup) view;
+
+            } else if (view instanceof FrameLayout) {
+                if (view.getId() == android.R.id.content) {
+                    return (ViewGroup) view;
+                } else {
+                    fallback = (ViewGroup) view;
+                }
+            }
+
+            if(view != null){
+                final ViewParent parent = view.getParent();
+                view = parent instanceof View? (View)parent : null;
+            }
+
+        } while (view != null);
+
+        return fallback;
+    }
     public static class SnackBarLayout extends LinearLayout {
 
 
         @BindView(R.id.snackbar_text)
-        private TextView messageView;
+        public TextView messageView;
         @BindView(R.id.snackbar_action)
-        private Button actionView;
+        public Button actionView;
 
         private int maxWidth;
         private int maxInlineActionWidth;
@@ -79,6 +201,8 @@ public class TSnackBar {
             LayoutInflater.from(context).inflate( R.layout.tsnackbar_layout_include,this);
 
             // TODO : 자료조사 모르겠다 이부분은
+            // 동적으로 UI를 표시해야될 경우에 넣어준다.
+            // 접근성과 관련된 패치를 읽어보기 Kitkat 4.4 이상부터 적용이되었다.
             ViewCompat.setAccessibilityLiveRegion(
                     this,
                     ViewCompat.ACCESSIBILITY_LIVE_REGION_POLITE
@@ -177,6 +301,32 @@ public class TSnackBar {
         }
     }
 
+
+    final class Behavior extends SwipeDismissBehavior<SnackBarLayout>{
+        @Override
+        public boolean canSwipeDismissView(@NonNull View view) {
+
+            return view instanceof SnackBarLayout;
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(CoordinatorLayout parent, SnackBarLayout child, MotionEvent event) {
+            if(parent.isPointInChildBounds( child,(int) event.getX(), (int) event.getY())){
+
+                switch ( event.getActionMasked() ){
+                    case MotionEvent.ACTION_DOWN:
+
+                        SnackBarManager.getInstance().cancelTimeout(managerCallback)
+                        break;
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL:
+
+                        break;
+                }
+            }
+            return super.onInterceptTouchEvent(parent, child, event);
+        }
+    }
 
 //    public static abstract class Callback
 }
