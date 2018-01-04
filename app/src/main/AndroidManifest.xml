@@ -73,7 +73,8 @@
             android:name=".samples.widget.FabAndSnackBarActivity"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
         <activity android:name=".samples.widget.FabScrollBehavior" />
-        <activity android:name=".samples.mvp.TaeWonActivity"></activity>
+        <activity android:name=".samples.mvp.TaeWonActivity" />
+        <activity android:name=".samples.widget.CustomSnackBarActivity"></activity>
     </application>
 
 </manifest>

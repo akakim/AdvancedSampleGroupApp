@@ -31,7 +31,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 
 /**
  * Created by RyoRyeong Kim on 2018-01-02.
- *
+ *왜 이런 코드가 나왔지 ??
  * reference : https://github.com/AndreiD/TSnackBar
  */
 
@@ -87,10 +87,10 @@ public class TSnackBar {
             public boolean handleMessage(Message msg) {
                 switch (msg.what) {
                     case MSG_SHOW:
-//                        ((TSnackBar) msg.obj).showView();
+                        ((TSnackBar) msg.obj).showView();
                         return true;
                     case MSG_DISMISS:
-//                        ((TSnackBar) msg.obj).hideView(msg.arg1);
+                        ((TSnackBar) msg.obj).hideView(msg.arg1);
                         return true;
                 }
                 return false;
@@ -151,6 +151,88 @@ public class TSnackBar {
         } while (view != null);
 
         return fallback;
+    }
+
+    private final SnackBarManager.Callback managerCallback = new SnackBarManager.Callback() {
+        @Override
+        public void show() {
+            handler.sendMessage(handler.obtainMessage(MSG_SHOW,TSnackBar.this));
+        }
+
+        @Override
+        public void dismiss(int event) {
+            handler.sendMessage(handler.obtainMessage(MSG_SHOW,event,0,TSnackBar.this));
+        }
+    };
+
+    public void dimiss(){
+        dispatchDismiss( Callback.DISMISS_EVENT_MANUAL);
+    }
+
+    public void dispatchDismiss(@Callback.DismissEvent int event){
+
+        SnackBarManager.getInstance().dismiss(managerCallback,event);
+    }
+
+    final void showView(){
+        if(view.getParent() == null){
+            final ViewGroup.LayoutParams lp = view.getLayoutParams();
+
+            if(lp instanceof CoordinatorLayout.LayoutParams){
+
+                final Behavior behavior = new Behavior();
+                // swipe 길이를 지정하는듯 .
+                behavior.setStartAlphaSwipeDistance( 0.1f); //
+                behavior.setEndAlphaSwipeDistance( 0.6f);   //
+                behavior.setSwipeDirection( SwipeDismissBehavior.SWIPE_DIRECTION_END_TO_START );
+                behavior.setListener(new SwipeDismissBehavior.OnDismissListener() {
+                    @Override
+                    public void onDismiss(View view) {
+                        dispatchDismiss(Callback.DISMISS_EVENT_SWIPE);
+                    }
+
+                    @Override
+                    public void onDragStateChanged(int state) {
+                        switch ( state){
+                            case SwipeDismissBehavior.STATE_DRAGGING:
+                            case SwipeDismissBehavior.STATE_SETTLING:
+                                SnackBarManager.getInstance().cancelTimeout(managerCallback);
+                                    break;
+
+                            case SwipeDismissBehavior.STATE_IDLE:
+                                SnackBarManager.getInstance().restoreTimeOut(managerCallback);
+                                break;
+                        }
+                    }
+                });
+
+                ((CoordinatorLayout.LayoutParams) lp).setBehavior(behavior);
+
+
+            }
+            parent.addView(view);
+        }
+
+        view.setOnAttachStateChangeListener(new SnackBarLayout.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToView(View v) {
+
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View v) {
+                if(isShownOrQueued()){
+
+                }
+            }
+        });
+    }
+
+
+
+    public boolean isShownOrQueued(){
+
+        return SnackBarManager.getInstance().isCurrentOrNext( )
     }
     public static class SnackBarLayout extends LinearLayout {
 
@@ -260,6 +342,88 @@ public class TSnackBar {
             }
         }
 
+        /**
+         * fade in Animation 발생
+         * @param delay
+         * @param duration
+         */
+        void animateChildrenIn(int delay , int duration){
+            ViewCompat.setAlpha( messageView, 0f);
+            ViewCompat.animate(messageView)
+                    .alpha(1f)
+                    .setDuration(duration)
+                    .setStartDelay(delay)
+                    .start();
+
+            if(actionView.getVisibility() == VISIBLE){
+                ViewCompat.setAlpha( actionView, 0f);
+                ViewCompat.animate(actionView)
+                        .alpha(1f)
+                        .setDuration(duration)
+                        .setStartDelay(delay)
+                        .start();
+
+            }
+        }
+
+        /**
+         * fade out Animation 발생
+         * @param delay
+         * @param duration
+         */
+        void animateChildrenOut(int delay , int duration){
+            ViewCompat.setAlpha( messageView, 1f);
+            ViewCompat.animate(messageView)
+                    .alpha(0f)
+                    .setDuration(duration)
+                    .setStartDelay(delay)
+                    .start();
+
+            if(actionView.getVisibility() == VISIBLE){
+                ViewCompat.setAlpha( actionView, 1f);
+                ViewCompat.animate(actionView)
+                        .alpha(0f)
+                        .setDuration(duration)
+                        .setStartDelay(delay)
+                        .start();
+
+            }
+        }
+
+        @Override
+        protected void onLayout(boolean changed, int l, int t, int r, int b) {
+            super.onLayout(changed, l, t, r, b);
+
+            if( changed && onLayoutChangeListener != null ){
+                onLayoutChangeListener.onLayoutChange( this, l,t,r,b);
+            }
+        }
+
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            if(onAttachStateChangeListener != null){
+                onAttachStateChangeListener.onViewAttachedToView(this);
+            }
+        }
+
+
+        @Override
+        protected void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            if(onAttachStateChangeListener != null){
+                onAttachStateChangeListener.onViewDetachedFromWindow(this);
+            }
+        }
+
+        public void setOnLayoutChangeListener(OnLayoutChangeListener onLayoutChangeListener) {
+            this.onLayoutChangeListener = onLayoutChangeListener;
+        }
+
+        public void setOnAttachStateChangeListener(OnAttachStateChangeListener onAttachStateChangeListener) {
+            this.onAttachStateChangeListener = onAttachStateChangeListener;
+        }
 
         /**
          *
@@ -299,6 +463,8 @@ public class TSnackBar {
                 view.setPadding( view.getPaddingLeft(), topPadding,view.getPaddingRight(),bottomPadding );
             }
         }
+
+
     }
 
 
@@ -316,11 +482,11 @@ public class TSnackBar {
                 switch ( event.getActionMasked() ){
                     case MotionEvent.ACTION_DOWN:
 
-                        SnackBarManager.getInstance().cancelTimeout(managerCallback)
+                        SnackBarManager.getInstance().cancelTimeout(managerCallback);
                         break;
                     case MotionEvent.ACTION_UP:
                     case MotionEvent.ACTION_CANCEL:
-
+                        SnackBarManager.getInstance().restoreTimeOut(managerCallback);
                         break;
                 }
             }
