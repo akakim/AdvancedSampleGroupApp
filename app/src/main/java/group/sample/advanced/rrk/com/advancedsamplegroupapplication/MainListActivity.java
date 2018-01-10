@@ -1,11 +1,13 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication;
 
 import android.content.Intent;
+import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -22,9 +24,10 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.char
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widget.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.database.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.*;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.RecyclerItemDeleteItem;
 import io.fabric.sdk.android.Fabric;
 
-public class MainListActivity extends BaseActivity implements SampleListAdapter.ItemClickListener {
+public class MainListActivity extends BaseActivity implements SampleListAdapter.ItemClickListener ,RecyclerItemDeleteItem.ItemTouchListener{
 
 
     @BindView(R.id.rvSampleList)
@@ -34,6 +37,10 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
     List<SampleItem> sampleItems = new ArrayList<>();
 
+
+    List<SampleItem> sampleInitItems = new ArrayList<>();
+
+    RecyclerItemDeleteItem.ItemTouchListener itemTouchListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,32 +49,51 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
         ButterKnife.bind(this);
 
-        sampleItems.add( new SampleItem(IdentifyActivity.class,"Application 고유 ID 와 device의 고유 ID"));
+        sampleInitItems.add( new SampleItem(IdentifyActivity.class,"Application 고유 ID 와 device의 고유 ID"));
 //        sampleItems.add( new SampleItem(OpenViewPagerActivity.class,"뷰페이저 테스트를위한 페이지"));
-        sampleItems.add( new SampleItem(GetAllOfMusicItemsActivity.class,"음악 아이템을 모아놓음"));
-        sampleItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
-        sampleItems.add( new SampleItem(MpAndroidChartListJavaActivity.class,"MPAndroidChart 예제들"));
-        sampleItems.add( new SampleItem(MvpGroupActivity.class,"MVP로 구현한 예제"));
-        sampleItems.add( new SampleItem(TypeFaceActivity.class,"폰트 라이브러리 구현 예제 "));
-        sampleItems.add( new SampleItem(WebViewTesterActivity.class,"웹뷰 테스터 "));
-        sampleItems.add( new SampleItem(RSSActivity.class,"RSS 테스터 "));
-        sampleItems.add( new SampleItem(JSoupActivity.class,"JSoup HTML 파서 . "));
-        sampleItems.add( new SampleItem(CrashActivity.class,"firebase Crash 보고서  "));
-        sampleItems.add( new SampleItem(MainParseActivity.class,"MainParse Activity cradle의 시작 "));
-        sampleItems.add( new SampleItem(CoordinatorSamples.class,"CoordinatorSample 예제들 Activity"));
+        sampleInitItems.add( new SampleItem(GetAllOfMusicItemsActivity.class,"음악 아이템을 모아놓음"));
+        sampleInitItems.add( new SampleItem(TextInputLayoutCustomActivity.class,"TextInput Custom 예제 "));
+        sampleInitItems.add( new SampleItem(MpAndroidChartListJavaActivity.class,"MPAndroidChart 예제들"));
+        sampleInitItems.add( new SampleItem(MvpGroupActivity.class,"MVP로 구현한 예제"));
+        sampleInitItems.add( new SampleItem(TypeFaceActivity.class,"폰트 라이브러리 구현 예제 "));
+        sampleInitItems.add( new SampleItem(WebViewTesterActivity.class,"웹뷰 테스터 "));
+        sampleInitItems.add( new SampleItem(RSSActivity.class,"RSS 테스터 "));
+        sampleInitItems.add( new SampleItem(JSoupActivity.class,"JSoup HTML 파서 . "));
+        sampleInitItems.add( new SampleItem(CrashActivity.class,"firebase Crash 보고서  "));
+        sampleInitItems.add( new SampleItem(MainParseActivity.class,"MainParse Activity cradle의 시작 "));
+        sampleInitItems.add( new SampleItem(CoordinatorSamples.class,"CoordinatorSample 예제들 Activity"));
 
 
+        sampleItems.addAll(sampleInitItems);
+        sampleItems.addAll(sampleInitItems);
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
 
 
         rvSampleList.setAdapter( sampleListAdapter );
 
         rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
+
+        rvSampleList.setNestedScrollingEnabled( false );
+
+
+        new ItemTouchHelper( this ).attachToRecyclerView(rvSampleList);
     }
 
     @Override
     public void ItemClicked(int position) {
         Intent i = new Intent(this, sampleItems.get(position).getClazz() );
         startActivity( i ) ;
+    }
+
+    @Override
+    public void deleteClicked(int position) {
+        sampleItems.remove(position);
+        rvSampleList.getAdapter().notifyItemRemoved(position);
+    }
+
+
+    @Override
+    public void onSwiped(RecyclerView.ViewHolder holder, int direction, int position) {
+
     }
 }

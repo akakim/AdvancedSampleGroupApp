@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_weight="0.4"
-        android:padding="7dp"
-        android:id="@+id/tvActivityName"/>
 
-    <TextView
-        android:layout_width="0dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_weight="0.6"
-        android:padding="7dp"
-        android:id="@+id/tvContent"/>
-</LinearLayout>
+        android:visibility="visible"
+        android:id="@+id/foregroundLayout">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="@dimen/default_padding"
+            android:id="@+id/tvActivityName"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="@dimen/default_padding"
+            android:id="@+id/tvContent"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:visibility="gone"
+        android:id="@+id/backLayout">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#e44e4e"
+            android:text="삭제 "
+            android:gravity="center_vertical|right"
+            android:padding="@dimen/default_padding"
+            android:textColor="#fff"
+            android:id="@+id/btnDeleteItem"/>
+    </RelativeLayout>
+</FrameLayout>

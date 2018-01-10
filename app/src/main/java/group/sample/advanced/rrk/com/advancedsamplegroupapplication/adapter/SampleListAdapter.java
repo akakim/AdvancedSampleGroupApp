@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.Photo;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
@@ -95,6 +98,9 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     public class SampleViewHolder extends RecyclerView.ViewHolder {
 
 
+
+        @BindView(R.id.foregroundLayout)
+        public RelativeLayout relativeLayout;
       @Nullable
       @BindView(R.id.tvActivityName)
       public TextView tvActivityName;
@@ -103,12 +109,15 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
       @BindView(R.id.tvContent)
       public TextView tvContent;
 
+      @BindView(R.id.btnDeleteItem)
+      public Button btnDelete;
+
         public SampleViewHolder(View itemView) {
             super(itemView);
 
             ButterKnife.bind(this,itemView);
 
-            itemView.setOnClickListener(
+            relativeLayout.setOnClickListener(
                     (View) -> {
 
                         if(itemClickListener != null){
@@ -118,10 +127,23 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
                         }
                     }
             );
+
+            btnDelete.setOnClickListener(
+                    (View) -> {
+
+                        if(itemClickListener != null){
+                            itemClickListener.deleteClicked(
+                                    (int)View.getTag()
+                            );
+                        }
+                    }
+            );
         }
+
     }
 
     public interface ItemClickListener{
         public void ItemClicked(int position);
+        void deleteClicked(int position);
     }
 }

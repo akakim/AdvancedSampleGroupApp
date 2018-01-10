@@ -90,7 +90,7 @@ public class TSnackBar {
                         ((TSnackBar) msg.obj).showView();
                         return true;
                     case MSG_DISMISS:
-                        ((TSnackBar) msg.obj).hideView(msg.arg1);
+//                        ((TSnackBar) msg.obj).hideView(msg.arg1);
                         return true;
                 }
                 return false;
@@ -113,8 +113,8 @@ public class TSnackBar {
                                  @Duration int duration){
 
             TSnackBar snackBar = new TSnackBar(findSuitableParent(view));
-            snackBar.setText(text);
-            snackBar.setDuration(duration);
+//            snackBar.setText(text);
+//            snackBar.setDuration(duration);
 
             return snackBar;
     }
@@ -232,7 +232,8 @@ public class TSnackBar {
 
     public boolean isShownOrQueued(){
 
-        return SnackBarManager.getInstance().isCurrentOrNext( )
+        return false;
+//        return SnackBarManager.getInstance().isCurrentOrNext( )
     }
     public static class SnackBarLayout extends LinearLayout {
 
