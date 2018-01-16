@@ -2,12 +2,17 @@ package group.sample.advanced.rrk.com.advancedsamplegroupapplication;
 
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -40,7 +45,9 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
     List<SampleItem> sampleInitItems = new ArrayList<>();
 
-    RecyclerItemDeleteItem.ItemTouchListener itemTouchListener;
+    @BindView( R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,11 +79,15 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         rvSampleList.setAdapter( sampleListAdapter );
 
         rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
-
+        rvSampleList.setItemAnimator(new DefaultItemAnimator());
+//        rvSampleList.addOnItemTouchListener( this );
+//        rvSampleList.addItemDecoration( );
         rvSampleList.setNestedScrollingEnabled( false );
 
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new RecyclerItemDeleteItem(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
 
-        new ItemTouchHelper( this ).attachToRecyclerView(rvSampleList);
+
+        new ItemTouchHelper( itemTouchHelperCallback ).attachToRecyclerView(rvSampleList);
     }
 
     @Override
@@ -95,5 +106,32 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
     @Override
     public void onSwiped(RecyclerView.ViewHolder holder, int direction, int position) {
 
+        if( holder instanceof SampleListAdapter.SampleViewHolder){
+
+            // get the removed item name to display it is snack bar
+            String name = sampleItems.get(holder.getAdapterPosition()).getClazz().getSimpleName();
+
+            // backup of removed item for undo purpose
+
+            final SampleItem deleteItem = sampleItems.get(holder.getAdapterPosition());
+            final int deletedIndex = holder.getAdapterPosition();
+
+            // remove the item from recycler view
+            sampleListAdapter.removeItem(holder.getAdapterPosition());
+
+            // showing snack bar with undo option
+            Snackbar snackbar =
+                    Snackbar.make(coordinatorLayout,name +" removed from Activity List",Snackbar.LENGTH_LONG)
+                    .setAction("UNDO",new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            sampleListAdapter.restoreItem( deleteItem,deletedIndex);
+                        }
+                    });
+
+            snackbar.setActionTextColor(Color.BLUE);
+            snackbar.show();
+
+        }
     }
 }

@@ -53,4 +53,9 @@ public class CoordinatorSamples extends BaseActivity implements SampleListAdapte
         Intent i = new Intent(this, sampleItems.get(position).getClazz() );
         startActivity( i ) ;
     }
+
+    @Override
+    public void deleteClicked(int position) {
+
+    }
 }

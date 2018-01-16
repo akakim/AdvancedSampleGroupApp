@@ -17,22 +17,7 @@ public class RecyclerItemDeleteItem extends ItemTouchHelper.SimpleCallback {
 
 
     ItemTouchListener listener;
-    /**
-     * Creates a Callback for the given drag and swipe allowance. These values serve as
-     * defaults
-     * and if you want to customize behavior per ViewHolder, you can override
-     * {@link #getSwipeDirs(RecyclerView, ViewHolder)}
-     * and / or {@link #getDragDirs(RecyclerView, ViewHolder)}.
-     *
-     * @param dragDirs  Binary OR of direction flags in which the Views can be dragged. Must be
-     *                  composed of {@link #LEFT}, {@link #RIGHT}, {@link #START}, {@link
-     *                  #END},
-     *                  {@link #UP} and {@link #DOWN}.
-     * @param swipeDirs Binary OR of direction flags in which the Views can be swiped. Must be
-     *                  composed of {@link #LEFT}, {@link #RIGHT}, {@link #START}, {@link
-     *                  #END},
-     *                  {@link #UP} and {@link #DOWN}.
-     */
+
     public RecyclerItemDeleteItem(int dragDirs, int swipeDirs, ItemTouchListener listener) {
         super(dragDirs, swipeDirs);
         this.listener = listener;
@@ -44,11 +29,12 @@ public class RecyclerItemDeleteItem extends ItemTouchHelper.SimpleCallback {
     }
 
 
+    // 선택의 변화
     @Override
     public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int actionState) {
         super.onSelectedChanged(viewHolder, actionState);
         if( viewHolder != null){
-            final View foregroundView = ((SampleListAdapter.SampleViewHolder) viewHolder).relativeLayout;
+            final View foregroundView = ((SampleListAdapter.SampleViewHolder) viewHolder).foregroundLayout;
 
             getDefaultUIUtil().onSelected(foregroundView);
         }
@@ -56,14 +42,31 @@ public class RecyclerItemDeleteItem extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
+        listener.onSwiped(viewHolder,direction,viewHolder.getAdapterPosition());
     }
 
     @Override
-    public void onChildDrawOver(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+    public void onChildDrawOver(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
+                                float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDrawOver(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
+        final View foregroundView = ((SampleListAdapter.SampleViewHolder) viewHolder ).foregroundLayout;
+        getDefaultUIUtil().onDrawOver(c, recyclerView,foregroundView,dX, dY,actionState,isCurrentlyActive);
+    }
 
+
+    @Override
+    public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+        super.clearView(recyclerView, viewHolder);
+        final View foregroundView = ((SampleListAdapter.SampleViewHolder) viewHolder ).foregroundLayout;
+        foregroundView.setVisibility(View.GONE);
+//        getDefaultUIUtil().clearView( foregroundView );
+    }
+
+    // ???
+    @Override
+    public int convertToAbsoluteDirection(int flags, int layoutDirection) {
+        return super.convertToAbsoluteDirection(flags, layoutDirection);
     }
 
     public interface ItemTouchListener{

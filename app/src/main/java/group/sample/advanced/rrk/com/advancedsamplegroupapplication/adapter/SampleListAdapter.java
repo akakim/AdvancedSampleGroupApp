@@ -92,6 +92,17 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     @Override
     public int getItemCount() { return (sampleItems == null ) ? 0 : sampleItems.size(); }
 
+    public void removeItem(int position){
+        this.sampleItems.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(SampleItem item, int position) {
+        sampleItems.add(position, item);
+        // notify item added by position
+        notifyItemInserted(position);
+    }
+
 
 
 
@@ -99,8 +110,12 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
 
 
-        @BindView(R.id.foregroundLayout)
-        public RelativeLayout relativeLayout;
+      @BindView(R.id.foregroundLayout)
+      public RelativeLayout foregroundLayout;
+
+      @BindView(R.id.backLayout)
+      public RelativeLayout backLayout;
+
       @Nullable
       @BindView(R.id.tvActivityName)
       public TextView tvActivityName;
@@ -117,7 +132,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
             ButterKnife.bind(this,itemView);
 
-            relativeLayout.setOnClickListener(
+            foregroundLayout.setOnClickListener(
                     (View) -> {
 
                         if(itemClickListener != null){

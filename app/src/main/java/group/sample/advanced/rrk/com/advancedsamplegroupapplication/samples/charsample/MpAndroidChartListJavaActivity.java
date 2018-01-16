@@ -54,4 +54,9 @@ public class MpAndroidChartListJavaActivity extends AppCompatActivity implements
         Intent i = new Intent(this, sampleItems.get(position).getClazz() );
         startActivity( i ) ;
     }
+
+    @Override
+    public void deleteClicked(int position) {
+
+    }
 }

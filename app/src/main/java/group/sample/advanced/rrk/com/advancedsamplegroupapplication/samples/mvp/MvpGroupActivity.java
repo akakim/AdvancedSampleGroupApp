@@ -98,4 +98,9 @@ public class MvpGroupActivity extends AppCompatActivity implements MainGroupView
         Intent i = new Intent(this, list.get(position).getClazz());
         startActivity( i );
     }
+
+    @Override
+    public void deleteClicked(int position) {
+
+    }
 }
