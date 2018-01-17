@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/MPChartLib" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/app_kotilin_sample" />
+            <option value="$PROJECT_DIR$/swipe-reveal-layout" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

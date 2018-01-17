@@ -56,6 +56,11 @@ public class MpAndroidChartListJavaActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void cancelClicked(int position) {
+
+    }
+
+    @Override
     public void deleteClicked(int position) {
 
     }

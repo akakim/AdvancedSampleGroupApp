@@ -100,6 +100,11 @@ public class MvpGroupActivity extends AppCompatActivity implements MainGroupView
     }
 
     @Override
+    public void cancelClicked(int position) {
+
+    }
+
+    @Override
     public void deleteClicked(int position) {
 
     }

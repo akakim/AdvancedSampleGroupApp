@@ -55,6 +55,11 @@ public class CoordinatorSamples extends BaseActivity implements SampleListAdapte
     }
 
     @Override
+    public void cancelClicked(int position) {
+
+    }
+
+    @Override
     public void deleteClicked(int position) {
 
     }

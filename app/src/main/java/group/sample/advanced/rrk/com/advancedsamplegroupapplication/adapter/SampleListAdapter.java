@@ -5,10 +5,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.SparseArray;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,6 +38,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     ItemClickListener itemClickListener;
     List <SampleItem> sampleItems = new ArrayList<>();
 
+    SparseBooleanArray sparseBooleanArray;
     public SampleListAdapter(Context context) {
         this.context = context;
         this.sampleItems = null;
@@ -49,6 +54,14 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         for( SampleItem i : sampleItems ){
             this.sampleItems.add(i);
         }
+
+        // initialize
+
+        sparseBooleanArray = new SparseBooleanArray(sampleItems.length);
+
+        for( int k = 0; k<sampleItems.length;k++){
+            sparseBooleanArray.put(k,false);
+        }
     }
 
     public SampleListAdapter(Context context, List<SampleItem> sampleItems,ItemClickListener itemClickListener){
@@ -57,6 +70,17 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         this.context = context;
         this.sampleItems.addAll( sampleItems );
         this.itemClickListener= itemClickListener;
+
+
+        sparseBooleanArray = new SparseBooleanArray(sampleItems.size());
+
+        for( int k = 0; k<sampleItems.size();k++){
+            sparseBooleanArray.put(k,false);
+        }
+
+//        for( int j = 0 ; j<sparseBooleanArray.size();j++){
+//            Log.d(getClass().getSimpleName()," sparseArray value " + sparseBooleanArray.get(j));
+//        }
     }
 
     public void notifyDataSet(List<SampleItem> sampleItems){
@@ -66,7 +90,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     @Override
     public SampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from( context ).inflate( R.layout.sample_list_item, null );
+        View view = LayoutInflater.from( context ).inflate( R.layout.sample_list_item, parent,false );
 
         return new SampleViewHolder(view);
     }
@@ -75,20 +99,41 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     @Override
     public void onBindViewHolder(SampleViewHolder holder, int position) {
 
-        holder.itemView.setTag(position);
+        holder.foregroundLayout.setTag(position);
 
-        if( sampleItems.get(position).getClazz() == null){
-            Log.e("TAG","getClaxx is null ");
-        }else if(holder.tvActivityName == null ){
+        holder.backLayout.setTag(position);
+        holder.btnDelete.setTag(position);
+//        holder.btnCancel.setTag(position);
 
-            Log.e("TAG","tvActivity Name is null");
-        }
-        else{
-            holder.tvActivityName.setText(sampleItems.get(position).getClazz().getSimpleName());
-        }
+        holder.tvActivityName.setText(sampleItems.get(position).getClazz().getSimpleName());
+
         holder.tvContent.setText( sampleItems.get(position).getDescription() );
+
+        holder.btnDelete.setText("삭제");
+        Log.d( getClass().getSimpleName(),"onBindViewHolder pos : " + position );
+        Log.d( getClass().getSimpleName()," getClass Name()  : " + sampleItems.get(position).getClazz().getSimpleName() );
+        Log.d( getClass().getSimpleName(),"is visible? : " +  sparseBooleanArray.get(position) );
+
+//        if( sparseBooleanArray.get(position) ){
+//            holder.foregroundLayout.setVisibility(View.GONE);
+//            holder.backLayout.setVisibility(View.VISIBLE);
+//        }else {
+//            holder.foregroundLayout.setVisibility(View.VISIBLE);
+//            holder.backLayout.setVisibility(View.GONE);
+//        }
     }
 
+
+    public void switchView(int pos ){
+
+        boolean currentValue = sparseBooleanArray.valueAt(pos);
+        sparseBooleanArray.put( pos , !currentValue );
+        notifyItemChanged( pos );
+    }
+
+    public boolean isRemoval(int pos){
+        return sparseBooleanArray.get(pos);
+    }
     @Override
     public int getItemCount() { return (sampleItems == null ) ? 0 : sampleItems.size(); }
 
@@ -96,6 +141,8 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         this.sampleItems.remove(position);
         notifyItemRemoved(position);
     }
+
+
 
     public void restoreItem(SampleItem item, int position) {
         sampleItems.add(position, item);
@@ -111,10 +158,10 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
 
       @BindView(R.id.foregroundLayout)
-      public RelativeLayout foregroundLayout;
+      public FrameLayout foregroundLayout;
 
       @BindView(R.id.backLayout)
-      public RelativeLayout backLayout;
+      public FrameLayout backLayout;
 
       @Nullable
       @BindView(R.id.tvActivityName)
@@ -124,8 +171,10 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
       @BindView(R.id.tvContent)
       public TextView tvContent;
 
+//      @BindView(R.id.btnCancel)
+//      public Button btnCancel;
       @BindView(R.id.btnDeleteItem)
-      public Button btnDelete;
+      public TextView btnDelete;
 
         public SampleViewHolder(View itemView) {
             super(itemView);
@@ -143,6 +192,15 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
                     }
             );
 
+
+//            btnCancel.setOnClickListener(  (View) -> {
+//
+//                if(itemClickListener != null){
+//                    itemClickListener.cancelClicked(
+//                            (int)View.getTag()
+//                    );
+//                }
+//            });
             btnDelete.setOnClickListener(
                     (View) -> {
 
@@ -159,6 +217,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
     public interface ItemClickListener{
         public void ItemClicked(int position);
+        void cancelClicked(int position );
         void deleteClicked(int position);
     }
 }
