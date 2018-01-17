@@ -33,10 +33,15 @@
         <item name="android:layout_columnSpan">2</item>
 
     </style>
+
     <style name="GridBatchStyle">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_columnWeight">0.5</item>
         <item name="android:layout_columnSpan">1</item>
 
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
