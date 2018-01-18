@@ -75,7 +75,20 @@
         <activity android:name=".samples.widget.FabScrollBehavior" />
         <activity android:name=".samples.mvp.TaeWonActivity" />
         <activity android:name=".samples.widget.CustomSnackBarActivity" />
-        <activity android:name=".samples.widget.SwipeExampleActivity"></activity>
+        <activity android:name=".samples.widget.SwipeExampleActivity" />
+        <activity
+            android:name=".samples.ItemListActivity"
+            android:label="@string/title_item_list"
+            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".samples.ItemDetailActivity"
+            android:label="@string/title_item_detail"
+            android:parentActivityName=".samples.ItemListActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.ItemListActivity" />
+        </activity>
     </application>
 
 </manifest>
