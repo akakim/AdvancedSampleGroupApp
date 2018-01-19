@@ -5,12 +5,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.PersistableBundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.util.Log;
 import android.view.View;
 
 import com.crashlytics.android.Crashlytics;
@@ -168,6 +170,34 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 //        });
     }
 
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        Log.d(getClass().getSimpleName(),"onsavedIstnae State" + outState.toString() );
+
+        if( sampleListAdapter != null){
+            sampleListAdapter.saveState(outState );
+        }
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        Log.d(getClass().getSimpleName(),"onRestoreInstanceState " + savedInstanceState.toString() );
+
+        if( sampleListAdapter != null){
+            sampleListAdapter.restoreState(savedInstanceState );
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+    }
+
     @Override
     public void ItemClicked(int position) {
         Intent i = new Intent(this, sampleItems.get(position).getClazz() );
@@ -176,7 +206,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
     @Override
     public void cancelClicked(int position) {
-        sampleListAdapter.switchView(position);
+//        sampleListAdapter.switchView(position);
     }
 
     @Override
@@ -195,7 +225,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
              * example 1
              */
 
-            sampleListAdapter.switchView( position );
+//            sampleListAdapter.switchView( position );
 //            // get the removed item name to display it is snack bar
 //            String name = sampleItems.get(holder.getAdapterPosition()).getClazz().getSimpleName();
 //

@@ -1,6 +1,7 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.chauthai.swipereveallayout.ViewBinderHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
     ItemClickListener itemClickListener;
     List <SampleItem> sampleItems = new ArrayList<>();
+    private final ViewBinderHelper binderHelper = new ViewBinderHelper();
 
     SparseBooleanArray sparseBooleanArray;
     public SampleListAdapter(Context context) {
@@ -55,13 +59,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
             this.sampleItems.add(i);
         }
 
-        // initialize
 
-        sparseBooleanArray = new SparseBooleanArray(sampleItems.length);
-
-        for( int k = 0; k<sampleItems.length;k++){
-            sparseBooleanArray.put(k,false);
-        }
     }
 
     public SampleListAdapter(Context context, List<SampleItem> sampleItems,ItemClickListener itemClickListener){
@@ -71,22 +69,15 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         this.sampleItems.addAll( sampleItems );
         this.itemClickListener= itemClickListener;
 
-
-        sparseBooleanArray = new SparseBooleanArray(sampleItems.size());
-
-        for( int k = 0; k<sampleItems.size();k++){
-            sparseBooleanArray.put(k,false);
-        }
-
-//        for( int j = 0 ; j<sparseBooleanArray.size();j++){
-//            Log.d(getClass().getSimpleName()," sparseArray value " + sparseBooleanArray.get(j));
-//        }
     }
 
     public void notifyDataSet(List<SampleItem> sampleItems){
         this.sampleItems.addAll(sampleItems);
         notifyDataSetChanged();
     }
+
+
+
     @Override
     public SampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -110,30 +101,18 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         holder.tvContent.setText( sampleItems.get(position).getDescription() );
 
         holder.btnDelete.setText("삭제");
-        Log.d( getClass().getSimpleName(),"onBindViewHolder pos : " + position );
-        Log.d( getClass().getSimpleName()," getClass Name()  : " + sampleItems.get(position).getClazz().getSimpleName() );
-        Log.d( getClass().getSimpleName(),"is visible? : " +  sparseBooleanArray.get(position) );
 
-//        if( sparseBooleanArray.get(position) ){
-//            holder.foregroundLayout.setVisibility(View.GONE);
-//            holder.backLayout.setVisibility(View.VISIBLE);
-//        }else {
-//            holder.foregroundLayout.setVisibility(View.VISIBLE);
-//            holder.backLayout.setVisibility(View.GONE);
-//        }
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                sampleItems.remove ( holder.getAdapterPosition() );
+                notifyItemRemoved(holder.getAdapterPosition() );
+            }
+        });
     }
 
-
-    public void switchView(int pos ){
-
-        boolean currentValue = sparseBooleanArray.valueAt(pos);
-        sparseBooleanArray.put( pos , !currentValue );
-        notifyItemChanged( pos );
-    }
-
-    public boolean isRemoval(int pos){
-        return sparseBooleanArray.get(pos);
-    }
     @Override
     public int getItemCount() { return (sampleItems == null ) ? 0 : sampleItems.size(); }
 
@@ -150,6 +129,14 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         notifyItemInserted(position);
     }
 
+
+    public void saveState(Bundle bundle){
+        binderHelper.saveStates( bundle);
+    }
+
+    public void restoreState(Bundle outState){
+        binderHelper.restoreStates( outState );
+    }
 
 
 
@@ -192,7 +179,20 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
                     }
             );
 
+        }
 
+        public void bind(String data){
+            btnDelete.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    sampleItems.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+
+                }
+            });
+        }
 //            btnCancel.setOnClickListener(  (View) -> {
 //
 //                if(itemClickListener != null){
@@ -201,17 +201,17 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 //                    );
 //                }
 //            });
-            btnDelete.setOnClickListener(
-                    (View) -> {
-
-                        if(itemClickListener != null){
-                            itemClickListener.deleteClicked(
-                                    (int)View.getTag()
-                            );
-                        }
-                    }
-            );
-        }
+//            btnDelete.setOnClickListener(
+//                    (View) -> {
+//
+//                        if(itemClickListener != null){
+//                            itemClickListener.deleteClicked(
+//                                    (int)View.getTag()
+//                            );
+//                        }
+//                    }
+//            );
+//        }
 
     }
 
