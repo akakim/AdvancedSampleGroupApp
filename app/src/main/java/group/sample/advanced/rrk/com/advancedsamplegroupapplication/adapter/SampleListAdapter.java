@@ -28,6 +28,7 @@ import butterknife.OnClick;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.Photo;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SingleChoice;
 
 
 /**
@@ -39,7 +40,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     Context context;
 
     ItemClickListener itemClickListener;
-    List <SampleItem> sampleItems = new ArrayList<>();
+    List <? extends Object> sampleItems = new ArrayList<>();
     private final ViewBinderHelper binderHelper = new ViewBinderHelper();
 
     SparseBooleanArray sparseBooleanArray;
@@ -49,20 +50,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     }
 
 
-    public SampleListAdapter(Context context,SampleItem[] sampleItems,ItemClickListener itemClickListener){
-        super();
-        this.context = context;
-//        this.sampleItems = sampleItems;
-        this.itemClickListener= itemClickListener;
-
-        for( SampleItem i : sampleItems ){
-            this.sampleItems.add(i);
-        }
-
-
-    }
-
-    public SampleListAdapter(Context context, List<SampleItem> sampleItems,ItemClickListener itemClickListener){
+    public SampleListAdapter(Context context, List sampleItems,ItemClickListener itemClickListener){
 
         super();
         this.context = context;
@@ -71,7 +59,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
     }
 
-    public void notifyDataSet(List<SampleItem> sampleItems){
+    public void notifyDataSet(List sampleItems){
         this.sampleItems.addAll(sampleItems);
         notifyDataSetChanged();
     }
@@ -96,21 +84,28 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
         holder.btnDelete.setTag(position);
 //        holder.btnCancel.setTag(position);
 
-        holder.tvActivityName.setText(sampleItems.get(position).getClazz().getSimpleName());
+        final Object obj = sampleItems.get(position);
+        if( obj instanceof SampleItem ) {
+            holder.tvActivityName.setText( ((SampleItem)obj).getClazz().getSimpleName());
 
-        holder.tvContent.setText( sampleItems.get(position).getDescription() );
+            holder.tvContent.setText(  ((SampleItem)obj).getDescription() );
 
+        }else if(obj instanceof SingleChoice){
+            holder.tvActivityName.setText( " 간편 예제 ");
+
+            holder.tvContent.setText(  ((SingleChoice)obj).getContent() );
+        }
         holder.btnDelete.setText("삭제");
 
 
-        holder.btnDelete.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                sampleItems.remove ( holder.getAdapterPosition() );
-                notifyItemRemoved(holder.getAdapterPosition() );
-            }
-        });
+//        holder.btnDelete.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//                sampleItems.remove ( holder.getAdapterPosition() );
+//                notifyItemRemoved(holder.getAdapterPosition() );
+//            }
+//        });
     }
 
     @Override
@@ -123,11 +118,6 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
 
 
-    public void restoreItem(SampleItem item, int position) {
-        sampleItems.add(position, item);
-        // notify item added by position
-        notifyItemInserted(position);
-    }
 
 
     public void saveState(Bundle bundle){

@@ -1,19 +1,36 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication;
 
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.PersistableBundle;
+import android.os.RemoteException;
 import android.support.design.widget.CoordinatorLayout;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.crashlytics.android.Crashlytics;
 
@@ -25,11 +42,13 @@ import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter.SampleListAdapter;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle.MainParseActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SingleChoice;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.charsample.MpAndroidChartListJavaActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widget.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.database.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.*;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.service.DummyService;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.RecyclerItemDeleteItem;
 import io.fabric.sdk.android.Fabric;
 
@@ -41,14 +60,25 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
     SampleListAdapter sampleListAdapter;
 
-    List<SampleItem> sampleItems = new ArrayList<>();
+    List<Object> sampleItems = new ArrayList<>();
 
 
-    List<SampleItem> sampleInitItems = new ArrayList<>();
+    List<Object> sampleInitItems = new ArrayList<>();
 
     @BindView( R.id.coordinatorLayout)
     CoordinatorLayout coordinatorLayout;
 
+
+    ServiceConnection serviceConnection;
+    Messenger remoteMessenger;
+    IntentFilter filter;
+
+    Handler serviceHandler;
+
+    View view;
+
+    /** 서비스에서 activity로 통신하기 위한 인스턴스 */
+    private BroadcastReceiver broadcastReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,9 +100,9 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem(CrashActivity.class,"firebase Crash 보고서  "));
         sampleInitItems.add( new SampleItem(MainParseActivity.class,"MainParse Activity cradle의 시작 "));
         sampleInitItems.add( new SampleItem(CoordinatorSamples.class,"CoordinatorSample 예제들 Activity"));
+        sampleInitItems.add( new SingleChoice( " 오버레이 권한을 이용한 pop창 예제 "));
 
 
-        sampleItems.addAll(sampleInitItems);
         sampleItems.addAll(sampleInitItems);
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
 
@@ -82,10 +112,41 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
         rvSampleList.setItemAnimator(new DefaultItemAnimator());
         rvSampleList.setHasFixedSize( true );
-//        rvSampleList.addOnItemTouchListener( this );
-//        rvSampleList.addItemDecoration( );
         rvSampleList.setNestedScrollingEnabled( false );
-//        rvSampleList.
+
+        serviceHandler = new Handler();
+        serviceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                remoteMessenger     = new Messenger(service);
+
+                if( remoteMessenger == null) {
+                    Log.e(getClass().getSimpleName(),"onServiceConnected Messenger is null ");
+                }else {
+                    Log.d(getClass().getSimpleName(),"onServiceConnected Messenger not null");
+//                    Message msg = Message.obtain();
+//                    msg.what = 0;
+//                    msg.obj = new Messenger(serviceHandler);
+//                    try {
+//                        remoteMessenger.send(msg);
+//                    } catch (RemoteException r) {
+//                        r.printStackTrace();
+//                    }
+                }
+
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                remoteMessenger = null;
+//                serviceHandler = null;
+            }
+        };
+
+        Intent demoService=  new Intent(this,DummyService.class);
+
+
+        bindService(demoService, serviceConnection  , Context.BIND_AUTO_CREATE  );
 
         /**
          * Swipe dismiss 예제 구현 . ItemTouch Listner를 지원받아서 하는데 swipe를 하는순간 취소 혹은 삭제를 보여줄 수 없다.
@@ -168,8 +229,57 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 //                }
 //            }
 //        });
+
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                String action = intent.getAction();
+                switch ( action ){
+                    case DummyService.SHOW_ALERT_POPUP_ACTION:
+                        initWindowLayout();
+                        break;
+                    default:
+                        Log.d(getClass().getSimpleName(),"get DefaultAction");
+                        break;
+                }
+            }
+        };
+
+        filter= new IntentFilter();
+        filter.addAction( DummyService.SHOW_ALERT_POPUP_ACTION );
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        registerReceiver( broadcastReceiver, filter);
+
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+
+        if ( broadcastReceiver != null ){
+            unregisterReceiver( broadcastReceiver);
+        }
+        if (serviceConnection != null ) {
+            unbindService(serviceConnection);
+        }
+        destroyWindowLayout();
+
+        if( serviceHandler != null){
+            serviceHandler = null;
+        }
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -200,8 +310,22 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
     @Override
     public void ItemClicked(int position) {
-        Intent i = new Intent(this, sampleItems.get(position).getClazz() );
-        startActivity( i ) ;
+
+
+        if( sampleItems.get(position ) instanceof SampleItem ){
+
+            Intent i = new Intent(this, ((SampleItem) sampleItems.get(position)).getClazz());
+            startActivity( i ) ;
+        }else if( sampleItems.get(position ) instanceof SingleChoice ){
+
+            Message msg = Message.obtain();
+
+            msg.what = DummyService.SHOW_ALERT_POPUP;
+            msg.obj = "dummy Text ";
+            remoteMessage( msg );
+
+        }
+
     }
 
     @Override
@@ -250,12 +374,69 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 //            snackbar.setActionTextColor(Color.BLUE);
 //            snackbar.show();
 
-            final SampleItem deleteItem = sampleItems.get(holder.getAdapterPosition());
-            final int deletedIndex = holder.getAdapterPosition();
-
-
-            sampleListAdapter.removeItem(holder.getAdapterPosition());
-            sampleListAdapter.notifyItemChanged(deletedIndex);
+//            final SampleItem deleteItem = sampleItems.get(holder.getAdapterPosition());
+//            final int deletedIndex = holder.getAdapterPosition();
+//
+//
+//            sampleListAdapter.removeItem(holder.getAdapterPosition());
+//            sampleListAdapter.notifyItemChanged(deletedIndex);
         }
+    }
+
+    /**
+     * 서비스로 음악의 상태를 변경하는 메세지를 보내는 메소드
+     * @param msg  음악의 상태값과 음악 아이템의 정보가 담긴 message
+     * @throws RemoteException
+     */
+    public void remoteMessage(Message msg) {
+        try {
+            if (remoteMessenger != null) {
+                remoteMessenger.send(msg);
+            } else {
+                Log.e(getClass().getSimpleName(), "remote object is null");
+
+            }
+        }catch ( RemoteException e ){
+            e.printStackTrace();
+        }
+    }
+
+
+    public void initWindowLayout (){
+
+
+        if (view == null){
+
+            view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_window_view,null,false);
+        }
+
+        // 희안하네 권한을 분명 줬는데 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY -> WindowManager.LayoutParams.TYPE_PHONE을 줘야만한다.
+        // 왜 Deprecate가 됬지 ???
+        WindowManager.LayoutParams windowLayoutParams = new WindowManager.LayoutParams(
+
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.TYPE_PHONE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                PixelFormat.TRANSLUCENT );
+
+        windowLayoutParams.gravity = Gravity.CENTER;
+
+        WindowManager windowManager = (WindowManager) getSystemService( WINDOW_SERVICE );
+
+        if( view != null ) {
+            windowManager.addView(view, windowLayoutParams);
+        }
+    }
+
+    public void destroyWindowLayout(){
+        WindowManager windowManager = (WindowManager) getSystemService( WINDOW_SERVICE );
+
+
+        if( view != null ) {
+            windowManager.removeViewImmediate(view);
+        }
+
+//        windowManager.addView( view, layoutParams);
     }
 }
