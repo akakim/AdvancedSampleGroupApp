@@ -101,6 +101,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem(MainParseActivity.class,"MainParse Activity cradle의 시작 "));
         sampleInitItems.add( new SampleItem(CoordinatorSamples.class,"CoordinatorSample 예제들 Activity"));
         sampleInitItems.add( new SingleChoice( " 오버레이 권한을 이용한 pop창 예제 "));
+        sampleInitItems.add( new SampleItem( ViewPagerActivity.class ," 뷰페이저를 안에 RecyclerView를 적용 , Listview로  응용하면 onMeasure 에서 뷰의 크기를 측정한다. "));
 
 
         sampleItems.addAll(sampleInitItems);
