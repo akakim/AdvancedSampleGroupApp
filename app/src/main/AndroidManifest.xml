@@ -105,7 +105,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.ItemListActivity" />
         </activity>
-        <activity android:name=".samples.widget.ViewPagerActivity"></activity>
+        <activity android:name=".samples.widget.ViewPagerActivity" />
+        <activity android:name=".samples.widget.CustomViewPagerActivity"></activity>
     </application>
 
 </manifest>

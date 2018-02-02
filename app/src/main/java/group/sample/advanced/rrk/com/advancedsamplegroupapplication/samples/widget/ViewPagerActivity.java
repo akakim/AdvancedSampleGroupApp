@@ -15,9 +15,12 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.TestFragment;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.views.SimpleListFragment;
 
-public class ViewPagerActivity extends AppCompatActivity implements SimpleListFragment.OnFragmentInteractionListener{
+public class ViewPagerActivity extends AppCompatActivity  implements
+        SimpleListFragment.OnFragmentInteractionListener,
+        TestFragment.OnFragmentInteractionListener{
 
     @BindView(R.id.viewPager)
     ViewPager viewPager;
@@ -66,10 +69,22 @@ public class ViewPagerActivity extends AppCompatActivity implements SimpleListFr
 
 
     private class RecyclerViewFragmentAdapter extends FragmentStatePagerAdapter {
+
+        ArrayList<Fragment> defaultFragments = new ArrayList<>();
         ArrayList<Fragment> fragments = new ArrayList<>();
         public RecyclerViewFragmentAdapter(FragmentManager fm , ArrayList<Fragment> fragments) {
             super(fm);
             this.fragments = fragments ;
+
+
+
+
+            for (int position = 0; position<=2;position++) {
+
+                TestFragment instance = new TestFragment();
+                defaultFragments.add( instance );
+
+            }
         }
 
 
@@ -79,29 +94,67 @@ public class ViewPagerActivity extends AppCompatActivity implements SimpleListFr
             Object obj = super.instantiateItem(container, position);
             if( obj instanceof Fragment ){
 
-                ArrayList<String> strList = new ArrayList<>();
-                for( int j = position *10 ; j< (position*10) + 30 ; j++){
-                    strList.add("inserted String " + j);
+                if( position < 3 ){
+
+
+                    Bundle bundle = new Bundle();
+
+                    final String param1 = "param1";
+                    final String param2 = "param2";
+                    switch (position) {
+                        case 0:
+                            bundle.putString(param1, "첫번째 서브내용");
+                            bundle.putString(param2, "청하는 마싰다 ");
+                            break;
+                        case 1:
+                            bundle.putString(param1, "두번째 서브내용");
+                            bundle.putString(param2, "청하는 머글꺼 ");
+                            break;
+                        case 2:
+                            bundle.putString(param1, "세번째 서브내용 ");
+                            bundle.putString(param2, "우걱우걱 ");
+                            break;
+                        default:
+                            break;
+
+                    }
+
+
+                    ((Fragment) obj).setArguments(bundle);
                 }
+                else {
+                    ArrayList<String> strList = new ArrayList<>();
+                    for (int j = position * 10; j < (position * 10) + 30; j++) {
+                        strList.add("inserted String " + j);
+                    }
 
 
-                Bundle bundle =new Bundle();
-                bundle.putStringArrayList(SimpleListFragment.ARG_LIST_ITEM,strList);
+                    Bundle bundle = new Bundle();
+                    bundle.putStringArrayList(SimpleListFragment.ARG_LIST_ITEM, strList);
 
 
-                ((Fragment) obj).setArguments( bundle );
+                    ((Fragment) obj).setArguments(bundle);
+                }
             }
             return  obj ;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return fragments.get(position);
+
+            if (position < 3) {
+
+                return defaultFragments.get(position);
+            } else if(position>=3){
+                return fragments.get(position - 3);
+            }else {
+                return null;
+            }
         }
 
         @Override
         public int getCount() {
-            return fragments.size();
+            return defaultFragments.size()+ fragments.size();
         }
     }
 }
