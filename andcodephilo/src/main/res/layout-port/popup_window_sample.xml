@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="240dp"
+        android:layout_height="300dp"
+        android:background="#EFEBE9"
+        android:layout_gravity="center_horizontal|center_vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPopupTitle"
+            android:textSize="14sp"
+            android:background="#795548"
+            android:text="윈도우 알림"
+            android:textColor="#fff"
+            android:padding="@dimen/default_padding"
+            android:layout_alignParentTop="true"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTitle"
+            tools:text="ssss"
+            android:padding="@dimen/default_padding"
+
+            android:layout_marginTop="70dp"
+            android:layout_below="@id/tvPopupTitle"
+            android:gravity="center"/>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="bottom">
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1.0"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:background="#D7CCC8"
+                android:text="확인"
+                android:textColor="#fff"
+                android:padding="@dimen/default_padding"
+                android:id="@+id/btnConfirm"
+                android:layout_centerHorizontal="true"
+                />
+
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="1.0"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:background="#9e9e9e"
+                android:text="취소"
+                android:textColor="#fff"
+                android:padding="8dp"
+
+                android:id="@+id/btnCancel"
+                android:layout_toRightOf="@id/btnConfirm"
+                android:layout_centerHorizontal="true"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
