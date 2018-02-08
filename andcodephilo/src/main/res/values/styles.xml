@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="lib_default_padding">8dp</dimen>
+
+
+    <style name="default_widget_style">
+        <item name="android:padding"> @dimen/lib_default_padding </item>
+
+    </style>
+
+
+    <style name="default_popup_content" parent="default_widget_style">
+
+        <!--<item name=""-->
+        <item name="android:gravity">center</item>
+    </style>
+</resources>

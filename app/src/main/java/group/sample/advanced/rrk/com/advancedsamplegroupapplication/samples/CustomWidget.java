@@ -14,6 +14,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 
 /**
  * Created by RyoRyeong Kim on 2018-01-23.
+ * 앱 위잿을 생성하는 방법
  */
 
 public class CustomWidget extends AppWidgetProvider {

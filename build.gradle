@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.2.21'
     ext{
         compileSdkVersion = 26
         buildToolsVersion = "26.0.2"
@@ -11,10 +12,13 @@ buildscript {
 
 
         // Bind view
-        butterKnifeVersion = '8.4.0'
+        butterKnifeVersion = '8.6.0'
 
         // Image Library
         glideLibVersion = '3.7.0'
+
+        // network Library
+        okkHttpLibVersion = '2.5.0'
     }
     repositories {
         google()
