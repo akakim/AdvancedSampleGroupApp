@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SpinnerTypeSelector">
+        <attr name="padding" format="reference|integer" ></attr>
+        <attr name="spinnerBackground" format="reference|integer"></attr>
+        <attr name="spinnerMode" format="reference|integer"/>
+    </declare-styleable>
+
+</resources>

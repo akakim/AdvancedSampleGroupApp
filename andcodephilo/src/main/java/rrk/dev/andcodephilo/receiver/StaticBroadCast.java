@@ -1,8 +1,11 @@
-package rrk.dev.andcodephilo;
+package rrk.dev.andcodephilo.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import rrk.dev.andcodephilo.GlobalActionConstant;
+import rrk.dev.andcodephilo.widget.WindowPopupManager;
 
 /**
  * Created by RyoRyeong Kim on 2018-02-08.

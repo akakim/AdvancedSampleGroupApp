@@ -6,13 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -21,11 +15,11 @@ import android.os.PersistableBundle;
 import android.os.RemoteException;
 import android.support.design.widget.CoordinatorLayout;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
+
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -102,6 +96,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem(CoordinatorSamples.class,"CoordinatorSample 예제들 Activity"));
         sampleInitItems.add( new SingleChoice( " 오버레이 권한을 이용한 pop창 예제 "));
         sampleInitItems.add( new SampleItem( ViewPagerActivity.class ," 뷰페이저를 안에 RecyclerView를 적용 , Listview로  응용하면 onMeasure 에서 뷰의 크기를 측정한다. "));
+        sampleInitItems.add( new SampleItem( TestWidgetActivity.class ," 뷰페이저를 안에 RecyclerView를 적용 , Listview로  응용하면 onMeasure 에서 뷰의 크기를 측정한다. "));
 
 
         sampleItems.addAll(sampleInitItems);

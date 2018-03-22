@@ -1,4 +1,4 @@
-package rrk.dev.andcodephilo;
+package rrk.dev.andcodephilo.widget;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,16 +6,16 @@ import android.graphics.PixelFormat;
 import android.os.Build;
 import android.provider.Settings;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.text.method.Touch;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import rrk.dev.andcodephilo.GlobalActionConstant;
+import rrk.dev.andcodephilo.R;
 
 /**
  * Created by RyoRyeong Kim on 2018-02-05.
@@ -171,6 +171,12 @@ public class WindowPopupManager implements View.OnClickListener,View.OnTouchList
 
     }
 
+    /**
+     * 팝업창을 이동시키기 위한 onTouchListener
+     * @param v
+     * @param event
+     * @return
+     */
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 

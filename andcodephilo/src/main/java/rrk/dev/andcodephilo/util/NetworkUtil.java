@@ -1,4 +1,4 @@
-package rrk.dev.andcodephilo;
+package rrk.dev.andcodephilo.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

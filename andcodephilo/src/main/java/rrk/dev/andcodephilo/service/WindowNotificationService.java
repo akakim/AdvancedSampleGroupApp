@@ -1,4 +1,4 @@
-package rrk.dev.andcodephilo;
+package rrk.dev.andcodephilo.service;
 
 import android.app.Service;
 import android.content.Intent;

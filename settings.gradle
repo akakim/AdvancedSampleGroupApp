@@ -1,2 +1,2 @@
 include 'MPChartLib'
-include ':app', ':app_kotilin_sample', ':andcodephilo','swipe-reveal-layout'
+include ':app', ':app_kotilin_sample', ':andcodephilo', ':ktLibrary','swipe-reveal-layout'

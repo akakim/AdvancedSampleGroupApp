@@ -56,42 +56,42 @@ class TaeWonMainActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tae_won_main)
-        if(recyclerView == null){
-            Log.e(javaClass.simpleName,"after set Content View recyclerView is Null")
-        }else {
-            Log.d(javaClass.simpleName,"after set Content View recyclerView is not Null")
-        }
-        setSupportActionBar(toolbar)
-
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-        }
-
-        val toggle = ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
-        drawer_layout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener(this)
-
-
-        // start Main Presenter
-
-        imageAdapter = ImageAdapter( this )
-
-        Log.d(javaClass.simpleName,"onCreate() LayoutManger");
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = imageAdapter
-
-        presenter = MainPresenter().apply {
-            view = this@TaeWonMainActivity
-            imageData = TaeWonImageRepository
-            adapterModel = imageAdapter
-            adapterView = imageAdapter
-        }
-
-        presenter.loadItem(this,false)
+//        if(recyclerView == null){
+//            Log.e(javaClass.simpleName,"after set Content View recyclerView is Null")
+//        }else {
+//            Log.d(javaClass.simpleName,"after set Content View recyclerView is not Null")
+//        }
+//        setSupportActionBar(toolbar)
+//
+//        fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show()
+//        }
+//
+//        val toggle = ActionBarDrawerToggle(
+//                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+//        drawer_layout.addDrawerListener(toggle)
+//        toggle.syncState()
+//
+//        nav_view.setNavigationItemSelectedListener(this)
+//
+//
+//        // start Main Presenter
+//
+//        imageAdapter = ImageAdapter( this )
+//
+//        Log.d(javaClass.simpleName,"onCreate() LayoutManger");
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = imageAdapter
+//
+//        presenter = MainPresenter().apply {
+//            view = this@TaeWonMainActivity
+//            imageData = TaeWonImageRepository
+//            adapterModel = imageAdapter
+//            adapterView = imageAdapter
+//        }
+//
+//        presenter.loadItem(this,false)
     }
 
     override fun onBackPressed() {
