@@ -45,6 +45,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.service.DummyService;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.RecyclerItemDeleteItem;
 import io.fabric.sdk.android.Fabric;
+import rrk.dev.andcodephilo.activity.TestWidgetActivity;
 
 public class MainListActivity extends BaseActivity implements SampleListAdapter.ItemClickListener ,RecyclerItemDeleteItem.ItemTouchListener{
 
@@ -97,6 +98,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SingleChoice( " 오버레이 권한을 이용한 pop창 예제 "));
         sampleInitItems.add( new SampleItem( ViewPagerActivity.class ," 뷰페이저를 안에 RecyclerView를 적용 , Listview로  응용하면 onMeasure 에서 뷰의 크기를 측정한다. "));
         sampleInitItems.add( new SampleItem( TestWidgetActivity.class ," 뷰페이저를 안에 RecyclerView를 적용 , Listview로  응용하면 onMeasure 에서 뷰의 크기를 측정한다. "));
+        sampleInitItems.add( new SampleItem( BottomRefreshActivity.class ,"Bottom Refresh Layout.... " ));
 
 
         sampleItems.addAll(sampleInitItems);

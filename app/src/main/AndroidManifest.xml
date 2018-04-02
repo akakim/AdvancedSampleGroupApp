@@ -106,7 +106,8 @@
                 android:value="group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.ItemListActivity" />
         </activity>
         <activity android:name=".samples.widget.ViewPagerActivity" />
-        <activity android:name=".samples.widget.CustomViewPagerActivity"></activity>
+        <activity android:name=".samples.widget.CustomViewPagerActivity" />
+        <activity android:name=".samples.BottomRefreshActivity"></activity>
     </application>
 
 </manifest>
