@@ -114,7 +114,7 @@ public class BottomEndlessRefreshAdapter extends RecyclerView.Adapter<RecyclerVi
     }
 
 
-
+    // TODO Refactoring
     public void setRecyclerView ( RecyclerView recyclerView){
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -132,6 +132,8 @@ public class BottomEndlessRefreshAdapter extends RecyclerView.Adapter<RecyclerVi
                 if( !isMoreLoading && ( totalItemCopunt - visibleItemCount ) <= (firstVisibleItem + visibleThreshold )){
                     if( listener != null ){
                         listener.onLoadMore();
+                        // something executed..
+                        // reset ...
                     }
                     isMoreLoading = true;
                 }
