@@ -61,6 +61,11 @@ public class FloodingPresenter {
         this.viewData           = viewData;
         this.layoutManager      = layoutManager;
         this.floodingInterface  = floodingInterface;
+
+
+        adapter = new FloodingAdapter(recyclerView.getContext(),viewData );
+
+
         recyclerView.setLayoutManager( layoutManager );
         recyclerView.setAdapter( adapter );
         recyclerView.addOnScrollListener( onScrollListener );
@@ -102,7 +107,10 @@ public class FloodingPresenter {
 
             isMoreLoading = true ;
             // TODO : somehing added
+            viewData.add(null);
             adapter.notifyItemInserted( adapter.getItemCount() - 1 );
+
+            floodingInterface.onLoad();
         }
     }
 
