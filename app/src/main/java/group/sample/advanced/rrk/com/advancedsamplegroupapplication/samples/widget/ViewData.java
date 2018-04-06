@@ -9,7 +9,7 @@ import java.lang.annotation.RetentionPolicy;
  * View의 모델 나중엔 어노테이션으로 값을 주입하는걸 더 만들어봐야됨.
  */
 
-interface ViewData {
+public interface ViewData {
 
     int VIEW_PROGRESS   = 0 ;
     int VIEW_HEADER     = 1 ;

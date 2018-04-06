@@ -1,6 +1,7 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widget;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -76,11 +77,35 @@ public class FloodingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
 
+    public void addDummyProgressView(){
+        viewArrayList.add(null);
+        notifyItemInserted( viewArrayList.size() -1 );
+    }
 
+//    public void setProgressMore ( final boolean isProgress){
+//
+//        if (isProgress ){
+////            new Handler().post(new Runnable() {
+////                @Override
+////                public void run() {
+//                    viewArrayList.add(null);
+//                    notifyItemInserted( viewArrayList.size() -1 );
+//
+////                }
+////            });
+//        }else {
+//            viewArrayList.remove(viewArrayList.size()- 1);
+//            viewArrayList.remove(viewArrayList.size()- 1);
+//
+//            notifyItemRemoved(viewArrayList.size());
+//
+//
+//        }
+//    }
 
     @Override
     public int getItemViewType(int position) {
-        return viewArrayList.get(position).getViewType();
+        return  ( viewArrayList.get(position) == null ? ViewData.VIEW_PROGRESS : ViewData.VIEW_ITEM);
     }
 
     @Override
