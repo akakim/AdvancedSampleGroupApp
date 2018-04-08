@@ -99,6 +99,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( ViewPagerActivity.class ," 뷰페이저를 안에 RecyclerView를 적용 , Listview로  응용하면 onMeasure 에서 뷰의 크기를 측정한다. "));
         sampleInitItems.add( new SampleItem( TestWidgetActivity.class ," 뷰페이저를 안에 RecyclerView를 적용 , Listview로  응용하면 onMeasure 에서 뷰의 크기를 측정한다. "));
         sampleInitItems.add( new SampleItem( BottomRefreshActivity.class ,"Bottom Refresh Layout.... " ));
+        sampleInitItems.add( new SampleItem( CustomViewActivity.class ,"CustomWidgetView 현재 다이얼로그를 위한 뷰생성됨. " ));
 
 
         sampleItems.addAll(sampleInitItems);
