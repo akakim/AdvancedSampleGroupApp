@@ -108,7 +108,8 @@
         <activity android:name=".samples.widget.ViewPagerActivity" />
         <activity android:name=".samples.widget.CustomViewPagerActivity" />
         <activity android:name=".samples.BottomRefreshActivity" />
-        <activity android:name=".samples.CustomViewActivity"></activity>
+        <activity android:name=".samples.CustomViewActivity" />
+        <activity android:name=".samples.ChronometerTimerExample" />
     </application>
 
 </manifest>

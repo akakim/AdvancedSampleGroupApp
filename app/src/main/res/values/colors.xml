@@ -8,5 +8,6 @@
     <color name="colorPrimaryTranslucent">#4000BCD4</color>
     <color name="browseButtonBorder">#26000000</color>
 
+    <color name="colorBlue">#26FFFFFF</color>
 
 </resources>
