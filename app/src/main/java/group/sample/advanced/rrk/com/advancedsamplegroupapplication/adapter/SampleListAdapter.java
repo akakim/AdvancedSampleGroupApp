@@ -80,8 +80,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
         holder.foregroundLayout.setTag(position);
 
-        holder.backLayout.setTag(position);
-        holder.btnDelete.setTag(position);
+//        holder.btnDelete.setTag(position);
 //        holder.btnCancel.setTag(position);
 
         final Object obj = sampleItems.get(position);
@@ -95,7 +94,7 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
 
             holder.tvContent.setText(  ((SingleChoice)obj).getContent() );
         }
-        holder.btnDelete.setText("삭제");
+//        holder.btnDelete.setText("삭제");
 
 
 //        holder.btnDelete.setOnClickListener(new View.OnClickListener(){
@@ -133,30 +132,29 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
     public class SampleViewHolder extends RecyclerView.ViewHolder {
 
 
+        @BindView(R.id.foregroundLayout)
+        public FrameLayout foregroundLayout;
 
-      @BindView(R.id.foregroundLayout)
-      public FrameLayout foregroundLayout;
+//      @BindView(R.id.backLayout)
+//      public FrameLayout backLayout;
 
-      @BindView(R.id.backLayout)
-      public FrameLayout backLayout;
+        @Nullable
+        @BindView(R.id.tvActivityName)
+        public TextView tvActivityName;
 
-      @Nullable
-      @BindView(R.id.tvActivityName)
-      public TextView tvActivityName;
-
-      @Nullable
-      @BindView(R.id.tvContent)
-      public TextView tvContent;
+        @Nullable
+        @BindView(R.id.tvContent)
+        public TextView tvContent;
 
 //      @BindView(R.id.btnCancel)
 //      public Button btnCancel;
-      @BindView(R.id.btnDeleteItem)
-      public TextView btnDelete;
+//      @BindView(R.id.btnDeleteItem)
+//      public TextView btnDelete;
 
         public SampleViewHolder(View itemView) {
             super(itemView);
 
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 
             foregroundLayout.setOnClickListener(
                     (View) -> {
@@ -170,40 +168,8 @@ public class SampleListAdapter extends RecyclerView.Adapter<SampleListAdapter.Sa
             );
 
         }
-
-        public void bind(String data){
-            btnDelete.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    sampleItems.remove(getAdapterPosition());
-                    notifyItemRemoved(getAdapterPosition());
-
-                }
-            });
-        }
-//            btnCancel.setOnClickListener(  (View) -> {
-//
-//                if(itemClickListener != null){
-//                    itemClickListener.cancelClicked(
-//                            (int)View.getTag()
-//                    );
-//                }
-//            });
-//            btnDelete.setOnClickListener(
-//                    (View) -> {
-//
-//                        if(itemClickListener != null){
-//                            itemClickListener.deleteClicked(
-//                                    (int)View.getTag()
-//                            );
-//                        }
-//                    }
-//            );
-//        }
-
     }
+
 
     public interface ItemClickListener{
         public void ItemClicked(int position);

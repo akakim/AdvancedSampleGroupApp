@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    app:mode="same_level"
-    app:dragEdge="right">
+<!--<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:orientation="horizontal"-->
+    <!--app:mode="same_level"-->
+    <!--app:dragEdge="right">-->
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:id="@+id/backLayout"
-        android:orientation="horizontal"
-        android:background="#e44e4e">
+    <!--<FrameLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:id="@+id/backLayout"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="#e44e4e">-->
 
         <!--<LinearLayout-->
             <!--android:layout_width="200dp"-->
@@ -26,32 +26,65 @@
                 <!--android:layout_weight="1.0"-->
                 <!--android:text=" 취소 "-->
                 <!--android:id="@+id/btnCancel" />-->
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.0"
-                android:background="@android:color/holo_red_dark"
-                android:textColor="@android:color/white"
-                android:text="삭제 "
-                android:gravity="center"
-                android:padding="@dimen/default_padding"
-                android:id="@+id/btnDeleteItem"/>
+            <!--<TextView-->
+                <!--android:layout_width="100dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="1.0"-->
+                <!--android:background="@android:color/holo_red_dark"-->
+                <!--android:textColor="@android:color/white"-->
+                <!--android:text="삭제 "-->
+                <!--android:gravity="center"-->
+                <!--android:padding="@dimen/default_padding"-->
+                <!--android:id="@+id/btnDeleteItem"/>-->
         <!--</LinearLayout>-->
 
-    </FrameLayout>
+    <!--</FrameLayout>-->
 
-    <FrameLayout
+    <!--<FrameLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:visibility="visible"-->
+        <!--android:id="@+id/foregroundLayout"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:background="@android:color/holo_blue_light">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:orientation="horizontal">-->
+        <!--<TextView-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:padding="@dimen/default_padding"-->
+            <!--android:id="@+id/tvActivityName"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:layout_alignParentLeft="true"/>-->
+
+        <!--<TextView-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:padding="@dimen/default_padding"-->
+            <!--android:id="@+id/tvContent"-->
+            <!--android:layout_weight="1.0"-->
+            <!--android:layout_alignParentRight="true"/>-->
+        <!--</LinearLayout>-->
+    <!--</FrameLayout>-->
+<!--</com.chauthai.swipereveallayout.SwipeRevealLayout>-->
+
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:visibility="visible"
+    android:id="@+id/foregroundLayout"
+    android:orientation="horizontal"
+    android:background="@android:color/holo_blue_light">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:visibility="visible"
-        android:id="@+id/foregroundLayout"
-        android:orientation="horizontal"
-        android:background="@android:color/holo_blue_light">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
         <TextView
             android:layout_width="200dp"
             android:layout_height="match_parent"
@@ -67,6 +100,5 @@
             android:id="@+id/tvContent"
             android:layout_weight="1.0"
             android:layout_alignParentRight="true"/>
-        </LinearLayout>
-    </FrameLayout>
-</com.chauthai.swipereveallayout.SwipeRevealLayout>
+    </LinearLayout>
+</FrameLayout>
