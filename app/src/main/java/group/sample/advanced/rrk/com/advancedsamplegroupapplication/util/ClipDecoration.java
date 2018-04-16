@@ -15,9 +15,12 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 
 /**
  * Created by RyoRyeong Kim on 2018-04-16.
+ *
+ * 전체 길이로 Divider를 설정하는게 아닌 Divider를 자를 수 있는 Deocrater가 필요하다.
  */
 
-public class NormalDecoration extends RecyclerView.ItemDecoration {
+public class ClipDecoration extends RecyclerView.ItemDecoration {
+
 
 
     Context context;
@@ -27,7 +30,7 @@ public class NormalDecoration extends RecyclerView.ItemDecoration {
     boolean showFirstDivider ;
     boolean showLastDivider  ;
 
-    public NormalDecoration(Context context, AttributeSet attrs) {
+    public ClipDecoration(Context context, AttributeSet attrs) {
         this.context = context;
 
 
@@ -36,7 +39,7 @@ public class NormalDecoration extends RecyclerView.ItemDecoration {
         a.recycle();
     }
 
-    public NormalDecoration(Context context) {
+    public ClipDecoration(Context context) {
         this.context = context;
 
 
@@ -191,4 +194,5 @@ public class NormalDecoration extends RecyclerView.ItemDecoration {
         float density = context.getResources().getDisplayMetrics().density;
         return dp * (int)density ;
     }
+
 }

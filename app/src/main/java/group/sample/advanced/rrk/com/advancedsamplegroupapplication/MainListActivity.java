@@ -103,6 +103,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( BottomRefreshActivity.class ,"Bottom Refresh Layout.... " ));
         sampleInitItems.add( new SampleItem( CustomViewActivity.class ,"CustomWidgetView 현재 다이얼로그를 위한 뷰생성됨. " ));
         sampleInitItems.add( new SampleItem( ChronometerTimerExample.class ,"타이머 설정" ));
+        sampleInitItems.add( new SampleItem( ScrollStickActivity.class ," 딱달라붙는 해더 뷰 " ));
 
 
         sampleItems.addAll(sampleInitItems);
@@ -110,8 +111,8 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
 
         rvSampleList.setAdapter( sampleListAdapter );
-        normalDecoration = new NormalDecoration( this, null );
-        normalDecoration.setDividerColor(0xffff00);
+        normalDecoration = new NormalDecoration( this );
+//        normalDecoration.setDividerColor(0xffff00);
 
 
         rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
