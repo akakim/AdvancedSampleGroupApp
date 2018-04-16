@@ -43,6 +43,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widg
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.database.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.service.DummyService;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.NormalDecoration;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.RecyclerItemDeleteItem;
 import io.fabric.sdk.android.Fabric;
 import rrk.dev.andcodephilo.activity.TestWidgetActivity;
@@ -72,6 +73,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
     View view;
 
+    NormalDecoration normalDecoration;
     /** 서비스에서 activity로 통신하기 위한 인스턴스 */
     private BroadcastReceiver broadcastReceiver;
     @Override
@@ -108,9 +110,13 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
 
         rvSampleList.setAdapter( sampleListAdapter );
+        normalDecoration = new NormalDecoration( this, null );
+        normalDecoration.setDividerColor(0xffff00);
+
 
         rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
         rvSampleList.setItemAnimator(new DefaultItemAnimator());
+        rvSampleList.addItemDecoration( normalDecoration);
         rvSampleList.setHasFixedSize( true );
         rvSampleList.setNestedScrollingEnabled( false );
 
