@@ -104,6 +104,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( CustomViewActivity.class ,"CustomWidgetView 현재 다이얼로그를 위한 뷰생성됨. " ));
         sampleInitItems.add( new SampleItem( ChronometerTimerExample.class ,"타이머 설정" ));
         sampleInitItems.add( new SampleItem( ScrollStickActivity.class ," 딱달라붙는 해더 뷰 " ));
+        sampleInitItems.add( new SampleItem( VideoViewActivity.class ," VideoView Sample " ));
 
 
         sampleItems.addAll(sampleInitItems);

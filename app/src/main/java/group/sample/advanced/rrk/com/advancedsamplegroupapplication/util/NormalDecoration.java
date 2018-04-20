@@ -114,7 +114,6 @@ public class NormalDecoration extends RecyclerView.ItemDecoration {
 
         if( divider == null )  return;
 
-//        if(parent.getChildPosition( parent ) < 1  ) return ;
 
         if( getOrientation( parent ) == LinearLayoutManager.VERTICAL ){
 
@@ -141,7 +140,7 @@ public class NormalDecoration extends RecyclerView.ItemDecoration {
             final int bottom = parent.getHeight() - parent.getPaddingBottom();
             final int childCount = parent.getChildCount();
 
-            for (int i=1; i < childCount; i++) {
+            for (int i = 1; i < childCount; i++) {
                 final View child = parent.getChildAt(i);
                 final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
                 final int size = divider.getIntrinsicWidth();
@@ -149,6 +148,8 @@ public class NormalDecoration extends RecyclerView.ItemDecoration {
                 final int right = left + size;
                 divider.setBounds(left, top, right, bottom);
                 divider.draw(c);
+
+
             }
         }
 
