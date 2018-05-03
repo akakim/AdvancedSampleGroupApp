@@ -111,7 +111,8 @@
         <activity android:name=".samples.CustomViewActivity" />
         <activity android:name=".samples.ChronometerTimerExample" />
         <activity android:name=".samples.ScrollStickActivity" />
-        <activity android:name=".samples.VideoViewActivity"></activity>
+        <activity android:name=".samples.VideoViewActivity" />
+        <activity android:name=".samples.DynamicButtonCreateActivity"></activity>
     </application>
 
 </manifest>

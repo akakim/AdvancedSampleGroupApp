@@ -105,6 +105,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( ChronometerTimerExample.class ,"타이머 설정" ));
         sampleInitItems.add( new SampleItem( ScrollStickActivity.class ," 딱달라붙는 해더 뷰 " ));
         sampleInitItems.add( new SampleItem( VideoViewActivity.class ," VideoView Sample " ));
+        sampleInitItems.add( new SampleItem( DynamicButtonCreateActivity.class ," DynamicButtonCreateActivity 서버에서 어떻게하면 좌표를 뿌려줄까?  " ));
 
 
         sampleItems.addAll(sampleInitItems);
