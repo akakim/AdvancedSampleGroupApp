@@ -10,4 +10,8 @@
 
     <color name="colorBlue">#26FFFFFF</color>
 
+    <color name="colorTealish">                 #2dd5cf</color>
+    <color name="colorGray">                    #c0c0c0</color>
+    <color name="colorWhite">                   #ffffff</color>
+    <color name="colorBlack">                   #aa000000</color>
 </resources>

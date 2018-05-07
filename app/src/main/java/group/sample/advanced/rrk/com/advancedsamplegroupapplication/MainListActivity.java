@@ -102,6 +102,9 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( CustomViewActivity.class ,"CustomWidgetView 현재 다이얼로그를 위한 뷰생성됨. " ));
         sampleInitItems.add( new SampleItem( ChronometerTimerExample.class ,"타이머 설정" ));
         sampleInitItems.add( new SampleItem( CurrentTimeActivity.class ,"현재 시간 알아내는 예제 " ));
+        sampleInitItems.add( new SampleItem( ScrollStickActivity.class ," 딱달라붙는 해더 뷰 " ));
+        sampleInitItems.add( new SampleItem( VideoViewActivity.class ," VideoView Sample " ));
+        sampleInitItems.add( new SampleItem( DynamicButtonCreateActivity.class ," DynamicButtonCreateActivity 서버에서 어떻게하면 좌표를 뿌려줄까?  " ));
 
 
         sampleItems.addAll(sampleInitItems);
@@ -109,9 +112,13 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
 
         rvSampleList.setAdapter( sampleListAdapter );
+        normalDecoration = new NormalDecoration( this );
+//        normalDecoration.setDividerColor(0xffff00);
+
 
         rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
         rvSampleList.setItemAnimator(new DefaultItemAnimator());
+        rvSampleList.addItemDecoration( normalDecoration);
         rvSampleList.setHasFixedSize( true );
         rvSampleList.setNestedScrollingEnabled( false );
 
