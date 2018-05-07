@@ -101,6 +101,7 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( BottomRefreshActivity.class ,"Bottom Refresh Layout.... " ));
         sampleInitItems.add( new SampleItem( CustomViewActivity.class ,"CustomWidgetView 현재 다이얼로그를 위한 뷰생성됨. " ));
         sampleInitItems.add( new SampleItem( ChronometerTimerExample.class ,"타이머 설정" ));
+        sampleInitItems.add( new SampleItem( CurrentTimeActivity.class ,"현재 시간 알아내는 예제 " ));
 
 
         sampleItems.addAll(sampleInitItems);

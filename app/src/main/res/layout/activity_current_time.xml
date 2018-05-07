@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.CurrentTimeActivity"
+    >
+        <GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:columnCount="3"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/default_padding">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="화면 생성 시간 :"
+                android:gravity="center_vertical|left"
+                />
+
+            <TextView
+                android:id="@+id/tvInitTimeFormed"
+                android:layout_width="150dp"
+                />
+
+            <TextView
+                android:id="@+id/tvInitTimeNotFormed"
+                android:layout_gravity="fill_horizontal"
+                />
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="재생성 시간  :"
+                android:gravity="center_vertical|left"
+                />
+
+            <TextView
+                android:id="@+id/tvRefreshTimeFormed"
+                android:layout_width="150dp"
+                />
+
+            <TextView
+                android:id="@+id/tvRefreshTimeNotFormed"
+                android:layout_gravity="fill_horizontal"
+                />
+
+
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="차이  :"
+                android:gravity="center_vertical|left"
+                />
+
+            <TextView
+                android:id="@+id/tvDiffTimeFormed"
+                android:layout_width="150dp"
+                />
+
+            <TextView
+                android:id="@+id/tvDiffTimeNotFormed"
+                android:layout_gravity="fill_horizontal"
+                />
+
+        </GridLayout>
+
+
+    <Button
+        android:id="@+id/btnTimeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text=" 시간 재설정 "
+        />
+
+
+
+</RelativeLayout>
