@@ -1,12 +1,14 @@
 package group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples;
 
 import android.support.annotation.NonNull;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.view.KeyEvent;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
+
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -15,14 +17,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.R;
 
-public class WebViewTesterActivity extends AppCompatActivity {
+public class WebViewTesterActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
 
     @BindView(R.id.mainWeb)
     WebView mainWeb;
 
-    @BindView( R.id. edInputURL)
-    AppCompatEditText edInputURL;
+//    @BindView( R.id. edInputURL)
+//    AppCompatEditText edInputURL;
+
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
     WebViewClient webViewClient;
     WebChromeClient webChromeClient;
 
@@ -32,10 +37,13 @@ public class WebViewTesterActivity extends AppCompatActivity {
 
 
             WebSettings webSettings = view.getSettings();
+
             view.setWebViewClient(webViewClient );
             view.setWebChromeClient( webChromeClient);
 
-            view.loadUrl("http://tutorialspoint.com/android/sampleXML.xml");
+            view.loadUrl("https://www.youtube.com/channel/UCsFfQoEIsQnCGMRzyZEXOIQ/live");
+
+
 //            view.loadUrl("http://showmethemoney.or.kr/%EB%B3%B4%EB%8F%84%EC%9E%90%EB%A3%8C/");
         }
     };
@@ -66,27 +74,49 @@ public class WebViewTesterActivity extends AppCompatActivity {
         webChromeClient = new WebChromeClient();
         webViewClient = new WebViewClient();
 
-        if( getIntent() != null) {
+        WebSettings webSettings = mainWeb.getSettings();
 
-            String RSS_FEED_KEY = getIntent().getExtras().getString(RSSActivity.RSS_FEED_KEY);
+        webSettings.setJavaScriptEnabled( true );
 
-            ButterKnife.apply(mainWeb, new ButterKnife.Action<WebView>() {
-                @Override
-                public void apply(@NonNull WebView view, int index) {
-                    WebSettings webSettings = view.getSettings();
-                    view.setWebViewClient(webViewClient );
-                    view.setWebChromeClient( webChromeClient);
 
-                    view.loadUrl(RSS_FEED_KEY);
-                }
-            });
+        mainWeb.setWebViewClient(webViewClient );
+        mainWeb.setWebChromeClient( webChromeClient);
 
-        }else {
-            ButterKnife.apply(mainWeb, initAction);
-        }
-        ButterKnife.apply(edInputURL,searchEditAction);
+
+
+//        mainWeb.loadUrl("https://stackoverflow.com/questions/17882474/running-adb-commands-on-all-connected-devices");
+        mainWeb.loadUrl("https://www.youtube.com/channel/UCsFfQoEIsQnCGMRzyZEXOIQ/live?app=mobile");
+        swipeRefreshLayout.setOnRefreshListener( this );
+
+
+
+
+
+//        ButterKnife.apply(mainWeb, initAction);
+//        if( getIntent() != null) {
+//
+////            String RSS_FEED_KEY = getIntent().getExtras().getString(RSSActivity.RSS_FEED_KEY);
+//
+//            ButterKnife.apply(mainWeb, new ButterKnife.Action<WebView>() {
+//                @Override
+//                public void apply(@NonNull WebView view, int index) {
+//                    WebSettings webSettings = view.getSettings();
+//                    view.setWebViewClient(webViewClient );
+//                    view.setWebChromeClient( webChromeClient);
+//
+//                    view.loadUrl(RSS_FEED_KEY);
+//                }
+//            });
+//
+//        }else {
+//            ButterKnife.apply(mainWeb, initAction);
+//        }
+//        ButterKnife.apply(edInputURL,searchEditAction);
     }
 
 
-
+    @Override
+    public void onRefresh() {
+        mainWeb.reload();
+    }
 }

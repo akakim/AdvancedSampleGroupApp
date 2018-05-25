@@ -7,14 +7,20 @@
     tools:context="group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.WebViewTesterActivity">
 
 
-    <android.support.v7.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/edInputURL"
-        />
-    <WebView
+    <!--<android.support.v7.widget.AppCompatEditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/edInputURL"-->
+        <!--/>-->
+
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/edInputURL"
-        android:id="@+id/mainWeb"></WebView>
+        android:id="@+id/swipeRefreshLayout">
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/mainWeb">
+        </WebView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>
