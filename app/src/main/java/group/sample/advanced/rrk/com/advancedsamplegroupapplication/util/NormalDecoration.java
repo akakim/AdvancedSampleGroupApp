@@ -46,21 +46,30 @@ public class NormalDecoration extends RecyclerView.ItemDecoration {
     public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
         super.onDraw(c, parent, state);
 
-        int left = parent.getPaddingLeft();
-        int right = parent.getWidth() - parent.getPaddingRight();
+//        int left = parent.getPaddingLeft();
+//        int right = parent.getWidth() - parent.getPaddingRight();
+//
+//        int childCount = parent.getChildCount();
+//
+//
+//        for ( int i = 0 ;i< childCount ; i++){
+//            View child = parent.getChildAt( i );
+//
+//            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams ) child.getLayoutParams();
+//            int top = child.getBottom() + params.bottomMargin;
+//            int bottom = top  + divider.getIntrinsicHeight();
+//
+//            divider.setBounds( left, top , right, bottom );
+//            divider.draw( c );
+//        }
+    }
 
-        int childCount = parent.getChildCount();
-
-
-        for ( int i = 0 ;i< childCount ; i++){
-            View child = parent.getChildAt( i );
-
-            RecyclerView.LayoutParams params = (RecyclerView.LayoutParams ) child.getLayoutParams();
-            int top = child.getBottom() + params.bottomMargin;
-            int bottom = top  + divider.getIntrinsicHeight();
-
-            divider.setBounds( left, top , right, bottom );
-            divider.draw( c );
+    @Override
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+        if( parent.getChildAdapterPosition( view ) != parent.getAdapter().getItemCount() -1 ){
+            outRect.bottom = 10;
+            view.setBackgroundColor( 0xffffff00);
         }
     }
 }
