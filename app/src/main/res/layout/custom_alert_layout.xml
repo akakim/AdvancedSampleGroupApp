@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="350dp"
+    android:background="#fff"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#2bc1bc"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:textSize="17sp"
+        android:text="알림"/>
+
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:gravity="center"
+        android:padding="15dp"
+        android:textSize="17sp"
+        android:textColor="#363534"
+        android:text="네트워크 상태를 체크 할 수 없습니다.\n 네트워크를 연결 해주세요 "/>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="146dp"
+        android:layout_height="42dp"
+
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="4dp"
+        app:cardBackgroundColor="@color/colorTealish"
+        >
+
+        <TextView
+            android:id="@+id/tvButtonContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="#fff"
+            android:text="확인"/>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

@@ -33,6 +33,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.adapter.SampleListAdapter;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.cradle.MainParseActivity;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.data.SampleItem;
@@ -44,6 +45,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.data
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.service.DummyService;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.RecyclerItemDeleteItem;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.widget.CustomAlertDialog;
 import io.fabric.sdk.android.Fabric;
 import rrk.dev.andcodephilo.activity.TestWidgetActivity;
 
@@ -106,6 +108,14 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( VideoViewActivity.class ," VideoView Sample " ));
         sampleInitItems.add( new SampleItem( DynamicButtonCreateActivity.class ," DynamicButtonCreateActivity 서버에서 어떻게하면 좌표를 뿌려줄까?  " ));
 
+
+
+        //TODO 구현
+        /**
+         *  InputMethodManager inputManager = (InputMethodManager) getSystemService( INPUT_METHOD_SERVICE );
+         //                    inputManager.hideSoftInputFromWindow(edId.getWindowToken(),InputMethodManager.HIDE_IMPLICIT_ONLY);
+         //                    inputManager.hideSoftInputFromWindow(edPassword.getWindowToken(),InputMethodManager.HIDE_IMPLICIT_ONLY);
+         */
 
         sampleItems.addAll(sampleInitItems);
         sampleListAdapter = new SampleListAdapter(this, sampleItems , this  );
@@ -391,6 +401,12 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         }
     }
 
+    @OnClick(R.id.btnShowPopup)
+    public void onClick(){
+
+//        CustomAlertDialog customAlertDialog =  new CustomAlertDialog(this);
+        new CustomAlertDialog(this).setMessage("알림","네트워크 오류가 발생했습니다.\n 관리자에게 문의하세요").show();
+    }
     /**
      * 서비스로 음악의 상태를 변경하는 메세지를 보내는 메소드
      * @param msg  음악의 상태값과 음악 아이템의 정보가 담긴 message

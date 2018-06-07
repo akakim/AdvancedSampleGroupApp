@@ -16,6 +16,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+
     buildTypes {
 
         debug {
@@ -27,6 +29,22 @@ android {
         }
     }
 
+
+//    productFlavors{
+//
+//        flavorDimensions "flav"
+//        demo {
+//            applicationIdSuffix ".demo"
+//            versionNameSuffix "-demo"
+//            flavorDimensions "flav"
+//        }
+//        full {
+//            applicationIdSuffix ".full"
+//            versionNameSuffix "-full"
+//            flavorDimensions "flav"
+//        }
+//
+//    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
