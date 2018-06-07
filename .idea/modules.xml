@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AdvancedSampleGroupApp.iml" filepath="$PROJECT_DIR$/AdvancedSampleGroupApp.iml" />
       <module fileurl="file://D:\AndroidStudioProjects\AdvancedSampleGroupApplication\AdvancedSampleGroupApp.iml" filepath="D:\AndroidStudioProjects\AdvancedSampleGroupApplication\AdvancedSampleGroupApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AdvancedSampleGroupApplication.iml" filepath="$PROJECT_DIR$/AdvancedSampleGroupApplication.iml" />
       <module fileurl="file://D:\workspace2\AdvancedSampleGroupApp\AdvancedSampleGroupApplication.iml" filepath="D:\workspace2\AdvancedSampleGroupApp\AdvancedSampleGroupApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/andcodephilo/andcodephilo.iml" filepath="$PROJECT_DIR$/andcodephilo/andcodephilo.iml" />

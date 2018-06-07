@@ -17,6 +17,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.os.Bundle;
 
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -44,6 +45,7 @@ import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.widg
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.database.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.mvp.*;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.service.DummyService;
+import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.NormalDecoration;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.util.RecyclerItemDeleteItem;
 import group.sample.advanced.rrk.com.advancedsamplegroupapplication.widget.CustomAlertDialog;
 import io.fabric.sdk.android.Fabric;
@@ -76,6 +78,9 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
     /** 서비스에서 activity로 통신하기 위한 인스턴스 */
     private BroadcastReceiver broadcastReceiver;
+
+
+    NormalDecoration normalDecoration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,12 +128,17 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
 
         rvSampleList.setAdapter( sampleListAdapter );
         normalDecoration = new NormalDecoration( this );
-//        normalDecoration.setDividerColor(0xffff00);
+        normalDecoration.setDivicerColor( R.color.colorTealish );
+//        normalDecoration.setDividerColor( R.color.colorTealish);
 
 
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager( this );
+        DividerItemDecoration itemDecoration = new DividerItemDecoration( this, linearLayoutManager.getOrientation() );
+
+//        itemDecoration
         rvSampleList.setLayoutManager( new LinearLayoutManager(this ));
         rvSampleList.setItemAnimator(new DefaultItemAnimator());
-        rvSampleList.addItemDecoration( normalDecoration);
+        rvSampleList.addItemDecoration( itemDecoration );
         rvSampleList.setHasFixedSize( true );
         rvSampleList.setNestedScrollingEnabled( false );
 

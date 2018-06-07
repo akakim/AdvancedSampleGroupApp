@@ -132,7 +132,7 @@ public class ClipDecoration extends RecyclerView.ItemDecoration {
                 final int size=  divider.getIntrinsicHeight();
                 final int top = child.getTop() - layoutParams.topMargin;
                 final int bottom = top + size;
-                divider.setTint(0xff0000);
+                divider.setTint(0xffff0000);
                 divider.setBounds( left,top,right,bottom );
 
                 divider.draw( c );
