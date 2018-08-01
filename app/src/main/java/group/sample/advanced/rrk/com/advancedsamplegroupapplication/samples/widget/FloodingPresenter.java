@@ -21,7 +21,6 @@ public class FloodingPresenter implements NetworkInteractor {
     private RecyclerView                                  recyclerView;
     private FloodingAdapter                               adapter;
     private WrappingLayoutManager                         layoutManager;
-
     private LoadListener                                    loadListener;
 
 
@@ -102,12 +101,10 @@ public class FloodingPresenter implements NetworkInteractor {
 
         recyclerView.setLayoutManager( layoutManager );
         recyclerView.setAdapter( adapter );
-
-
-
-
-
         recyclerView.addOnScrollListener( onScrollListener );
+
+
+
     }
 
     public RecyclerView getRecyclerView() {

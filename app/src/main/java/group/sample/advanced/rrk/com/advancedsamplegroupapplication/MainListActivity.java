@@ -16,6 +16,7 @@ import android.os.RemoteException;
 import android.support.design.widget.CoordinatorLayout;
 import android.os.Bundle;
 
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -112,6 +113,8 @@ public class MainListActivity extends BaseActivity implements SampleListAdapter.
         sampleInitItems.add( new SampleItem( ScrollStickActivity.class ," 딱달라붙는 해더 뷰 " ));
         sampleInitItems.add( new SampleItem( VideoViewActivity.class ," VideoView Sample " ));
         sampleInitItems.add( new SampleItem( DynamicButtonCreateActivity.class ," DynamicButtonCreateActivity 서버에서 어떻게하면 좌표를 뿌려줄까?  " ));
+        sampleInitItems.add( new SampleItem( DrawerCoodinatorLayout.class ,"CoordinatoryLayout과, AppbarLayout과 NavigationDrawer를 이용한 게시판 예제 " ));
+        sampleInitItems.add( new SampleItem( TextInputLayoutLogin.class ,"로그인 예제 " ));
 
 
 

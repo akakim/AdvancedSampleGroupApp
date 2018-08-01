@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="group.sample.advanced.rrk.com.advancedsamplegroupapplication.samples.TextInputLayoutLogin">
+
+    <!-- drawable .... fuck -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:drawableStart="@drawable/ic_email"
+            android:drawableTint="@color/drawable_icon_tint"
+            android:drawableTintMode="src_over"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutPassword">
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edPassword"
+            android:drawableStart="@drawable/ic_password"
+            android:drawableTint="@color/drawable_icon_tint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </android.support.design.widget.TextInputLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>

@@ -7,10 +7,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
 
     <application
         android:allowBackup="true"
@@ -116,8 +114,10 @@
         <activity android:name=".samples.ChronometerTimerExample" />
         <activity android:name=".samples.ScrollStickActivity" />
         <activity android:name=".samples.VideoViewActivity" />
-        <activity android:name=".samples.DynamicButtonCreateActivity"></activity>
-        <activity android:name=".samples.CurrentTimeActivity"></activity>
+        <activity android:name=".samples.DynamicButtonCreateActivity" />
+        <activity android:name=".samples.CurrentTimeActivity" />
+        <activity android:name=".samples.DrawerCoodinatorLayout" />
+        <activity android:name=".samples.TextInputLayoutLogin"></activity>
     </application>
 
 </manifest>
